@@ -33,21 +33,12 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jSenha = new javax.swing.JPasswordField();
         bEntrar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-
-        jButton1.setText("Enter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -56,6 +47,7 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
         jLabel1.setBackground(new java.awt.Color(204, 255, 51));
         jLabel1.setText("E-mail:");
 
+        jNome.setToolTipText("");
         jNome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Senha:");
@@ -104,17 +96,11 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
                         .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)))
                 .addGap(0, 33, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,20 +118,15 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
-        Conexao cn = new Conexao();
-        cn.conectar();
-        Usuario nome = cn.login(jNome.getText(), new String(jSenha.getPassword()));
-        if (nome != null) {
-            TelaPrincipal ac = new TelaPrincipal(nome);
-            ac.setVisible(true);
+        Conexao novaConexao = new Conexao();
+        novaConexao.conectar();
+        Usuario novoUsuario = novaConexao.login(jNome.getText(), new String(jSenha.getPassword()));
+        if (novoUsuario != null) {
+            new TelaPrincipal(novoUsuario).setVisible(true);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos. ");
+            JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bEntrarActionPerformed
 
@@ -161,10 +142,8 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEntrar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jNome;
     private javax.swing.JPasswordField jSenha;
     // End of variables declaration//GEN-END:variables
