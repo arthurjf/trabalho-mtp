@@ -70,9 +70,9 @@ public class NovoPost extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -94,7 +94,7 @@ public class NovoPost extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
-        new Principal(this.usuario).setVisible(true);
+        new TelaPrincipal(this.usuario).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -109,7 +109,7 @@ public class NovoPost extends javax.swing.JFrame {
                     conexao.cadastrarPost(jCampoTexto.getText(), this.usuario.getId());
                     JOptionPane.showMessageDialog(null, "Sucesso");
                     dispose();
-                    new Principal(this.usuario).setVisible(true);
+                    new TelaPrincipal(this.usuario).setVisible(true);
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "ERROR, algo de errado não está certo....", "ERROR", JOptionPane.ERROR_MESSAGE);
 

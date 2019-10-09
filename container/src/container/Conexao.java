@@ -18,7 +18,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "fls2802";
+    private String senha = "ifg";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -70,14 +70,14 @@ public class Conexao {
      *
      * Normalmente, a criação de tabelas NÃO é feita pela aplicação.
      */
-    public void cadastrarPost(String texto, int idPessoa)throws SQLException{
+    public void cadastrarPost(String texto, int idPessoa) throws SQLException {
         PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?,?,now())");
         st.setInt(1, idPessoa);
         st.setString(2, texto);
         st.executeUpdate();
-        st.close();    
+        st.close();
     }
-    
+
     public void criarTabela() {
         try {
             PreparedStatement st = this.conn.prepareStatement("CREATE TABLE pessoa (id serial primary key, nome text)");
@@ -140,8 +140,7 @@ public class Conexao {
 
     public Usuario login(String email, String senha) {
         try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT id, nome, email, senha, cidade FROM pessoa WHERE email = ? AND senha = ?;");
-
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa WHERE email = ? AND senha = ?;");
             ps.setString(1, email);
             ps.setString(2, senha);
             ResultSet rs = ps.executeQuery();

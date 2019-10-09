@@ -14,16 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author filip
  */
-public class Login extends javax.swing.JFrame implements ActionListener {
-
-    ArrayList<Conta> contas = new ArrayList<>();
+public class TelaLogin extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form MeuFrame
      */
-    public Login() {
+    public TelaLogin() {
         initComponents();
-
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -143,7 +141,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         cn.conectar();
         Usuario nome = cn.login(jNome.getText(), new String(jSenha.getPassword()));
         if (nome != null) {
-            Principal ac = new Principal(nome);
+            TelaPrincipal ac = new TelaPrincipal(nome);
             ac.setVisible(true);
             dispose();
         } else {

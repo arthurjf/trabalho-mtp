@@ -2,15 +2,15 @@ package container;
 
 import java.awt.Color;
 
-public class Principal extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     private Usuario usuario;
 
-    public Principal(Usuario usuario) {
+    public TelaPrincipal(Usuario usuario) {
 
         initComponents();
         this.usuario = usuario;
-        setBackground(new Color(250, 250, 250));
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -160,15 +160,13 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Cadastro cadastro = new Cadastro();
-        Login login = new Login();
-        login.setVisible(true);
+        new TelaInicial().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jAlterarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlterarCadastroActionPerformed
-        Cadastro cadastro = new Cadastro(this.usuario);
-        cadastro.setVisible(true);
+        new TelaCadastro(this.usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jAlterarCadastroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

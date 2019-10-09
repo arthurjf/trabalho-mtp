@@ -18,7 +18,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
-        setForeground(new Color(159,250,134));
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,8 +40,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(159, 250, 134));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/containeir/imagens/kj.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/container/imagens/kj.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -116,15 +115,13 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastrarActionPerformed
-       Cadastro cadastro = new Cadastro();
-            cadastro=new Cadastro();
-            cadastro.setVisible(true);
+        new TelaCadastro(null).setVisible(true);
+        dispose();
     }//GEN-LAST:event_jCadastrarActionPerformed
 
     private void jEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEntrarActionPerformed
-       new Login ().setVisible(true);
-       dispose();
-       
+        new TelaLogin().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jEntrarActionPerformed
 
     /**

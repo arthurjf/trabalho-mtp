@@ -14,26 +14,22 @@ import javax.swing.JPanel;
  *
  * @author filip
  */
-public class Cadastro extends javax.swing.JFrame {
+public class TelaCadastro extends javax.swing.JFrame {
 
     private Usuario usuario;
 
-    /**
-     * Creates new form Cadastro
-     */
-    public Cadastro() {
-        initComponents();
-    }
-
-    public Cadastro(Usuario usuario) {
+    public TelaCadastro(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
-        jNomeCadastro.setText(this.usuario.getNome());
-        jEmailCadastro.setText(this.usuario.getEmail());
-        jCidadeCadastro.setText(this.usuario.getCidade());
-        jSenhaCadastro.setText(this.usuario.getSenha());
-        jEmailCadastro.setEditable(false);
-        jEmailCadastro.setEnabled(false);
+        setLocationRelativeTo(null);
+        if (usuario != null) {
+            jNomeCadastro.setText(this.usuario.getNome());
+            jEmailCadastro.setText(this.usuario.getEmail());
+            jCidadeCadastro.setText(this.usuario.getCidade());
+            jSenhaCadastro.setText(this.usuario.getSenha());
+            jEmailCadastro.setEditable(false);
+            jEmailCadastro.setEnabled(false);
+        }
     }
 
     /**
@@ -59,7 +55,7 @@ public class Cadastro extends javax.swing.JFrame {
         jSenhaCadastro = new javax.swing.JPasswordField();
         jSenConCadastro = new javax.swing.JPasswordField();
         jConfirmar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -100,10 +96,10 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jCancelar.setText("Cancelar");
+        jCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jCancelarActionPerformed(evt);
             }
         });
 
@@ -114,19 +110,12 @@ public class Cadastro extends javax.swing.JFrame {
         jInternalFrame2Layout.setHorizontalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                .addGap(193, 193, 193)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jButton2)
-                        .addGap(117, 117, 117)
-                        .addComponent(jConfirmar))
-                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton1)))))
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
                 .addContainerGap(51, Short.MAX_VALUE)
@@ -138,6 +127,10 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(jConSenha1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addComponent(jConfirmar)
+                        .addGap(126, 126, 126)
+                        .addComponent(jCancelar))
                     .addComponent(jEmailCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCidadeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -152,7 +145,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jInternalFrame2Layout.createSequentialGroup()
                         .addComponent(jNome1)
@@ -175,11 +168,11 @@ public class Cadastro extends javax.swing.JFrame {
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSenConCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jConSenha1))
-                .addGap(51, 51, 51)
+                .addGap(55, 55, 55)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jConfirmar)
-                    .addComponent(jButton2))
-                .addGap(20, 20, 20))
+                    .addComponent(jCancelar))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,47 +190,49 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmarActionPerformed
-        if(!jNomeCadastro.getText().trim().isEmpty() && !jEmailCadastro.getText().trim().isEmpty() && !jCidadeCadastro.getText().trim().isEmpty() && !new String(jSenhaCadastro.getPassword()).trim().isEmpty()){
+        if (!jNomeCadastro.getText().trim().isEmpty() && !jEmailCadastro.getText().trim().isEmpty() && !jCidadeCadastro.getText().trim().isEmpty() && !new String(jSenhaCadastro.getPassword()).trim().isEmpty()) {
             if (new String(jSenhaCadastro.getPassword()).equals(new String(jSenConCadastro.getPassword()))) {
-            Conexao cn = new Conexao();
-            cn.conectar();
-            try {
-                if (this.usuario == null) {
-                    cn.inserircadastro(jEmailCadastro.getText(), new String(jSenhaCadastro.getPassword()), jNomeCadastro.getText(), jCidadeCadastro.getText());
-                    JOptionPane.showMessageDialog(null, "Sucesso");
-                    dispose();
-                } else {
+                Conexao cn = new Conexao();
+                cn.conectar();
+                try {
+                    if (this.usuario == null) {
+                        cn.inserircadastro(jEmailCadastro.getText(), new String(jSenhaCadastro.getPassword()), jNomeCadastro.getText(), jCidadeCadastro.getText());
+                        JOptionPane.showMessageDialog(null, "Sucesso");
+                        dispose();
+                    } else {
 
-                    cn.atualizar(jNomeCadastro.getText(), jCidadeCadastro.getText(), new String(jSenhaCadastro.getPassword()), usuario.getId());
-                    JOptionPane.showMessageDialog(null, "Sucesso");
-                    dispose();
+                        cn.atualizar(jNomeCadastro.getText(), jCidadeCadastro.getText(), new String(jSenhaCadastro.getPassword()), usuario.getId());
+                        JOptionPane.showMessageDialog(null, "Sucesso");
+                        dispose();
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "não foi possivel cadastrar");
                 }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "não foi possivel cadastrar");
-            }
 
+            } else {
+                JOptionPane.showMessageDialog(null, "As senhas não são iguais.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "As senhas não são iguais.");
-        }
-        }
-        else{
             JOptionPane.showMessageDialog(null, "Campo em branco.");
         }
     }//GEN-LAST:event_jConfirmarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Cadastro cadastro = new Cadastro();
+    private void jCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelarActionPerformed
+        if (this.usuario == null) {
+            new TelaInicial().setVisible(true);
+        } else {
+            new TelaPrincipal(this.usuario).setVisible(true);
+        }
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jCancelarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jCancelar;
     private javax.swing.JLabel jCidade1;
     private javax.swing.JTextField jCidadeCadastro;
     private javax.swing.JLabel jConSenha1;
