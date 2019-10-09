@@ -9,7 +9,7 @@ Trabalho de MTP do IFG 2019/2
 ## Criação da tabela "pessoa"
 **CREATE TABLE** pessoa (id **SERIAL PRIMARY KEY**, nome **VARCHAR(100)**, email **VARCHAR(45)**, senha **VARCHAR(45)**, cidade_estado **VARCHAR(45)**, foto **bytea**);
 #
-# Requisitos do trabalho
+# Requisitos e regras do trabalho
 - [X] O sistema deve permitir que, por meio de uma tela inicial, o usuário possa escolher se quer acessar o sistema ou cadastrar-se.
 
 - [X] O  sistema  deve  permitir  que  o  usuário  possa  alterar seus dados.
@@ -21,3 +21,15 @@ Trabalho de MTP do IFG 2019/2
 - [ ] O sistema deverá mostrar o total de “likes” de cada post.
 
 - [X] O sistema deve tratar as mensagens de erro e devolvê-lasde forma amigável ao usuário.
+
+- [X] E-mails devem ser únicos. O acesso ao sistema deve ser feito por meio do endereço de e-mail.
+
+- [X] O usuário não poderá alterar seu e-mail.
+
+- [X] Cada post não poderá ter mais que 140 caracteres.
+
+- [ ] Um post pode conter somente uma imagem.
+
+- [ ] Somente usuários logados podem criar e “dar like” em posts.
+
+- [ ] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
