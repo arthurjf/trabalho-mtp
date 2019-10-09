@@ -1,7 +1,6 @@
 # Trabalho MTP
 Trabalho de MTP do IFG 2019/2
-* Data de entrega
-09/12/2019
+* Data de entrega 09/12/2019
 
 ## Criação da tabela "post"
 **CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
@@ -20,7 +19,7 @@ Trabalho de MTP do IFG 2019/2
 
 - [ ] O sistema deverá mostrar o total de “likes” de cada post.
 
-- [X] O sistema deve tratar as mensagens de erro e devolvê-lasde forma amigável ao usuário.
+- [X] O sistema deve tratar as mensagens de erro e devolvê-las de forma amigável ao usuário.
 
 - [X] E-mails devem ser únicos. O acesso ao sistema deve ser feito por meio do endereço de e-mail.
 
