@@ -13,7 +13,7 @@ Trabalho de MTP do IFG 2019/2
 
 - [X] O  sistema  deve  permitir  que  o  usuário  possa  alterar seus dados.
 
-- [ ] O sistema deve permitir que, após feito o login, o usuário possa visualizar uma tela com seus 03(três)últimosposts.A tela pode ter os contêineresfixosdos posts, mudando apenas os valores de acordo com os dados do banco de dados.
+- [ ] O sistema deve permitir que, após feito o login, o usuário possa visualizar uma tela com seus 03(três)últimos posts.A tela pode ter os contêineresfixosdos posts, mudando apenas os valores de acordo com os dados do banco de dados.
 
 - [ ] O sistema deve permitir que o usuário possa criar um post. Um post poderá ser composto somente de texto, ou de texto e imagem.
 
