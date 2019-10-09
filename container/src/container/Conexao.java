@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.ArrayList;
 
 public class Conexao {
 
@@ -65,19 +66,55 @@ public class Conexao {
         return this.conn;
     }
 
+    /* Método que retorna o id da pessoa do banco de dados */
+    public Usuario login(String email, String senha) {
+        try {
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa WHERE email = ? AND senha = ?;");
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Usuario novoUsuario = new Usuario();
+                novoUsuario.setId(rs.getInt(1));
+                novoUsuario.setNome(rs.getString(2));
+                novoUsuario.setEmail(rs.getString(3));
+                novoUsuario.setSenha(rs.getString(4));
+                novoUsuario.setCidade(rs.getString(5));
+                return novoUsuario;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    /* Método que retorna uma ArrayList de posts */
+ /*
+    public ArrayList<Post> buscarPosts(Usuario novoUsuario) {
+        try {
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa AS pa JOIN post AS po on pa.id = po.id_pessoa ORDER BY po.id DESC FETCH FIRST 10 ROWS ONLY;");
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Post> newPost = new ArrayList<Post>();
+            while (rs.next()) {
+                Post tempPost = new Post();
+                tempPost.setTexto(rs.getString(8));
+                tempPost.setData(rs.getString(10));
+                tempPost.setNome(rs.getString(2));
+                newPost.add(tempPost);
+            }
+            return newPost;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }*/
     /**
      * Método que cria a tabela pessoa para este exemplo.
      *
      * Normalmente, a criação de tabelas NÃO é feita pela aplicação.
      */
-    public void cadastrarPost(String texto, int idPessoa) throws SQLException {
-        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?,?,now())");
-        st.setInt(1, idPessoa);
-        st.setString(2, texto);
-        st.executeUpdate();
-        st.close();
-    }
-
     public void criarTabela() {
         try {
             PreparedStatement st = this.conn.prepareStatement("CREATE TABLE pessoa (id serial primary key, nome text)");
@@ -93,14 +130,26 @@ public class Conexao {
      *
      * Por enquanto, a pessoa está fixa!
      */
-    public void inserircadastro(String email, String senha, String nome, String cidade) throws SQLException {
-        PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (email,senha,nome,cidade) VALUES (?,?,?,?)");
-        st.setString(1, email);
-        st.setString(2, senha);
-        st.setString(3, nome);
-        st.setString(4, cidade);
-        st.executeUpdate();
-        st.close();
+    public void inserir() {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (nome) VALUES (?)");
+            st.setString(1, "Thiago");
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* Método que insere uma pessoa no banco de dados */
+    public void inserirPessoa(String nome, String senha, String cidadeEstado, String email) throws SQLException {
+        PreparedStatement ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado) values (?, ?, ?, ?);");
+        ps.setString(1, nome);
+        ps.setString(2, email);
+        ps.setString(3, senha);
+        ps.setString(4, cidadeEstado);
+        ps.executeUpdate();
+        ps.close();
     }
 
     /**
@@ -108,18 +157,47 @@ public class Conexao {
      *
      * E se for necessário alterar para uma pessoa só? O que muda?
      */
-    public void atualizar(String nome, String cidade, String senha, Integer id) {
+    public void atualizar() {
         try {
-            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET (nome,cidade,senha) = (?,?,?) WHERE id = ?;");
-            st.setString(1, nome);
-            st.setString(2, cidade);
-            st.setString(3, senha);
-            st.setInt(4, id);
+            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?");
+            st.setString(1, "Thiago 2");
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /* Método que cadastra o post criado pelo usuário no banco de dados */
+    public void cadastrarPost(String texto, int idPessoa) throws SQLException {
+        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (id_pessoa, texto, data) VALUES (?, ?, now())");
+        st.setInt(1, idPessoa);
+        st.setString(2, texto);
+        st.executeUpdate();
+        st.close();
+    }
+
+    /* Método que atualiza a pessoa no banco de dados */
+    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, Usuario novoUsuario) {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ? WHERE id = ?");
+            st.setString(1, nome);
+            st.setString(2, senha);
+            st.setString(3, cidadeEstado);
+            st.setInt(4, novoUsuario.getId());
+            st.executeUpdate();
+            st.close();
+            Usuario newUser = new Usuario();
+            newUser.setNome(nome);
+            newUser.setSenha(senha);
+            newUser.setCidade(cidadeEstado);
+            newUser.setId(novoUsuario.getId());
+            newUser.setEmail(novoUsuario.getEmail());
+            return newUser;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return novoUsuario;
     }
 
     /**
@@ -138,26 +216,4 @@ public class Conexao {
         }
     }
 
-    public Usuario login(String email, String senha) {
-        try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa WHERE email = ? AND senha = ?;");
-            ps.setString(1, email);
-            ps.setString(2, senha);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt(1));
-                usuario.setNome(rs.getString(2));
-                usuario.setEmail(rs.getString(3));
-                usuario.setSenha(rs.getString(4));
-                usuario.setCidade(rs.getString(5));
-                return usuario;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
 }
