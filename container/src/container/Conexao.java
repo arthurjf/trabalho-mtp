@@ -70,6 +70,14 @@ public class Conexao {
      *
      * Normalmente, a criação de tabelas NÃO é feita pela aplicação.
      */
+    public void cadastrarPost(String texto, int idPessoa)throws SQLException{
+        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?,?,now())");
+        st.setInt(1, idPessoa);
+        st.setString(2, texto);
+        st.executeUpdate();
+        st.close();    
+    }
+    
     public void criarTabela() {
         try {
             PreparedStatement st = this.conn.prepareStatement("CREATE TABLE pessoa (id serial primary key, nome text)");

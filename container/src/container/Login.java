@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author filip
  */
 public class Login extends javax.swing.JFrame implements ActionListener {
+
     ArrayList<Conta> contas = new ArrayList<>();
 
     /**
@@ -40,7 +41,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         jLabel2 = new javax.swing.JLabel();
         jSenha = new javax.swing.JPasswordField();
         bEntrar = new javax.swing.JButton();
-        bCadastrar = new javax.swing.JButton();
+        bCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("Enter");
@@ -51,27 +52,17 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("filipin2000");
+        setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 51));
         jLabel1.setText("E-mail:");
 
         jNome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNomeActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Senha:");
 
         jSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSenhaActionPerformed(evt);
-            }
-        });
 
         bEntrar.setBackground(new java.awt.Color(204, 255, 204));
         bEntrar.setText("Entrar");
@@ -82,38 +73,38 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        bCadastrar.setBackground(new java.awt.Color(153, 255, 153));
-        bCadastrar.setText("CADASTRO");
-        bCadastrar.setBorder(new javax.swing.border.MatteBorder(null));
-        bCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        bCancelar.setBackground(new java.awt.Color(153, 255, 153));
+        bCancelar.setText("Cancelar");
+        bCancelar.setBorder(new javax.swing.border.MatteBorder(null));
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCadastrarActionPerformed(evt);
+                bCancelarActionPerformed(evt);
             }
         });
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\filip\\OneDrive\\Área de Trabalho\\kj.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(89, 89, 89)
-                            .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addGap(0, 33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,8 +126,8 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -148,73 +139,29 @@ public class Login extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
-      Conexao cn = new Conexao();
-      cn.conectar();
-      Usuario nome = cn.login(jNome.getText(),new String( jSenha.getPassword()));
-      if (nome != null){
-          Principal ac = new Principal(nome);
-          ac.setVisible(true);
-          dispose(); 
-      }
-      else{
-          JOptionPane.showMessageDialog(null,"Usuario ou senha incorretos. ");
-      }
+        Conexao cn = new Conexao();
+        cn.conectar();
+        Usuario nome = cn.login(jNome.getText(), new String(jSenha.getPassword()));
+        if (nome != null) {
+            Principal ac = new Principal(nome);
+            ac.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos. ");
+        }
     }//GEN-LAST:event_bEntrarActionPerformed
 
-    private void jNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNomeActionPerformed
-
-
-    }//GEN-LAST:event_jNomeActionPerformed
-
-    private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
-       Cadastro cadastro = new Cadastro();
-            cadastro=new Cadastro();
-            cadastro.setVisible(true);
-    }//GEN-LAST:event_bCadastrarActionPerformed
-
-    private void jSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSenhaActionPerformed
-
-
-    }//GEN-LAST:event_jSenhaActionPerformed
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        new TelaInicial().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bCancelarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bCadastrar;
+    private javax.swing.JButton bCancelar;
     private javax.swing.JButton bEntrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
