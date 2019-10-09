@@ -2,13 +2,13 @@
 Trabalho de MTP do IFG 2019/2
 * Data de entrega
 09/12/2019
-#
+
 ## Criação da tabela "post"
 **CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
-#
+
 ## Criação da tabela "pessoa"
 **CREATE TABLE** pessoa (id **SERIAL PRIMARY KEY**, nome **VARCHAR(100)**, email **VARCHAR(45)**, senha **VARCHAR(45)**, cidade_estado **VARCHAR(45)**, foto **bytea**);
-#
+
 # Requisitos e regras do trabalho
 - [X] O sistema deve permitir que, por meio de uma tela inicial, o usuário possa escolher se quer acessar o sistema ou cadastrar-se.
 
