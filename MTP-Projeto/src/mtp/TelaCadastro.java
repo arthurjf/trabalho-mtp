@@ -6,7 +6,15 @@
 package mtp;
 
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.io.IOException;
+import java.nio.file.Files;
+import javax.swing.JLabel;
 
 /**
  *
@@ -29,9 +37,20 @@ public class TelaCadastro extends javax.swing.JFrame {
             campoEmail.setEnabled(false);
             jConfirmar.setText("Alterar");
             setTitle("Alterar cadastro");
+            if (this.usuario.getFoto() != null) {
+                setTempFotoIcon(this.usuario.getFoto(), labelFoto);
+            }
         } else {
             setTitle("Cadastrar");
         }
+    }
+
+    public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto) {
+        ImageIcon icon = new ImageIcon(foto);
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(139, 139, Image.SCALE_SMOOTH);
+        ImageIcon newIcon = new ImageIcon(newimg);
+        labelDaFoto.setIcon(newIcon);
     }
 
     /**
@@ -57,8 +76,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jConfirmar = new javax.swing.JButton();
         jCancelar = new javax.swing.JButton();
+        labelFoto = new javax.swing.JLabel();
+        botaoAlterarFoto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -145,10 +165,19 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon.png"))); // NOI18N
+        labelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/edit_icon.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoAlterarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/edit_icon.png"))); // NOI18N
+        botaoAlterarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoAlterarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoAlterarFotoMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Foto de perfil");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,18 +200,22 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(botaoAlterarFoto)
                 .addGap(243, 243, 243))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoAlterarFoto, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jNome1)
                 .addGap(4, 4, 4)
@@ -230,16 +263,18 @@ public class TelaCadastro extends javax.swing.JFrame {
                 cn.conectar();
                 try {
                     if (this.usuario == null) {
-                        cn.inserirPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), campoEmail.getText());
+                        cn.inserirPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), campoEmail.getText(), arquivo);
                         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        this.usuario = cn.atualizarPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), this.usuario);
+                        this.usuario = cn.atualizarPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), arquivo, this.usuario);
                         JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                         new TelaPrincipal(this.usuario).setVisible(true);
                         this.dispose();
                     }
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "Não foi possível efetuar o cadastro.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível encontrar o arquivo.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
             } else {
@@ -259,11 +294,34 @@ public class TelaCadastro extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jCancelarActionPerformed
 
+    File arquivo = null;
+
+    private void botaoAlterarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarFotoMouseClicked
+        JFileChooser fc = new JFileChooser();
+        int retorno = fc.showOpenDialog(this);
+        File novoArquivo = fc.getSelectedFile();;
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
+                arquivo = novoArquivo;
+                byte[] fileContent;
+                try {
+                    fileContent = Files.readAllBytes(arquivo.toPath());
+                    setTempFotoIcon(fileContent, labelFoto);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, "<html>Tipo de arquivo incorreto!<br>Por favor, insira um arquivo válido como: png, jpg ou bmp</html>", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "<html>Tipo de arquivo incorreto!<br>Por favor, insira um arquivo válido como: png, jpg ou bmp</html>", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botaoAlterarFotoMouseClicked
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botaoAlterarFoto;
     private javax.swing.JTextField campoCidadeEstado;
     private javax.swing.JPasswordField campoConfirmarSenha;
     private javax.swing.JTextField campoEmail;
@@ -275,10 +333,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton jConfirmar;
     private javax.swing.JLabel jEmail1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jNome1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jSenha1;
+    private javax.swing.JLabel labelFoto;
     // End of variables declaration//GEN-END:variables
 }

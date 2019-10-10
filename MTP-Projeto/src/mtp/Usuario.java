@@ -5,18 +5,31 @@
  */
 package mtp;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author filip
  */
 public class Usuario {
+
     private Integer id;
     private String nome;
     private String email;
     private String senha;
     private String cidade;
+    private byte[] foto;
 
-    public Integer getId(){
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -39,16 +52,20 @@ public class Usuario {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    public String getNome(){
+
+    public String getNome() {
         return nome;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
-    public String getSenha(){
+
+    public String getSenha() {
         return senha;
     }
-    public String getCidade(){
+
+    public String getCidade() {
         return cidade;
     }
 }
