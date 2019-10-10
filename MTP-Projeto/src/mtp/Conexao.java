@@ -1,5 +1,15 @@
 package mtp;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Conexao {
 
@@ -66,7 +79,7 @@ public class Conexao {
         return this.conn;
     }
 
-    /* Método que retorna o id da pessoa do banco de dados */
+    /* Método que retorna o usuário da pessoa do banco de dados */
     public Usuario login(String email, String senha) {
         try {
             PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa WHERE email = ? AND senha = ?;");
@@ -80,6 +93,7 @@ public class Conexao {
                 novoUsuario.setEmail(rs.getString(3));
                 novoUsuario.setSenha(rs.getString(4));
                 novoUsuario.setCidade(rs.getString(5));
+                novoUsuario.setFoto(rs.getBytes(6));
                 return novoUsuario;
             } else {
                 return null;
@@ -125,6 +139,27 @@ public class Conexao {
         }
     }
 
+    private byte[] pegarImagemPessoa(int idUsuario) {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("SELECT foto FROM pessoa WHERE id = ?");
+            st.setInt(1, idUsuario);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                byte[] binario = rs.getBytes(1);
+                InputStream is = new ByteArrayInputStream(binario);
+                BufferedImage imag = ImageIO.read(is);
+                ImageIcon icon = new ImageIcon(imag);
+                return rs.getBytes(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Método que insere uma pessoa no banco de dados
      *
@@ -142,8 +177,15 @@ public class Conexao {
     }
 
     /* Método que insere uma pessoa no banco de dados */
-    public void inserirPessoa(String nome, String senha, String cidadeEstado, String email) throws SQLException {
-        PreparedStatement ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado) values (?, ?, ?, ?);");
+    public void inserirPessoa(String nome, String senha, String cidadeEstado, String email, File imagem) throws SQLException, FileNotFoundException {
+        PreparedStatement ps;
+        if (imagem == null) {
+            ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado) values (?, ?, ?, ?);");
+        } else {
+            FileInputStream fis = new FileInputStream(imagem);
+            ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado, foto) values (?, ?, ?, ?, ?);");
+            ps.setBinaryStream(5, fis, (int) imagem.length());
+        }
         ps.setString(1, nome);
         ps.setString(2, email);
         ps.setString(3, senha);
@@ -178,13 +220,25 @@ public class Conexao {
     }
 
     /* Método que atualiza a pessoa no banco de dados */
-    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, Usuario novoUsuario) {
+    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, File imagem, Usuario novoUsuario) throws FileNotFoundException {
         try {
-            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ? WHERE id = ?");
+            PreparedStatement st;
+            if (imagem == null) {
+                st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ? WHERE id = ?");
+
+            } else {
+                st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ?, foto = ? WHERE id = ?");
+                try {
+                    FileInputStream fis = new FileInputStream(imagem);
+                    st.setBinaryStream(4, fis, (int) imagem.length());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
             st.setString(1, nome);
             st.setString(2, senha);
             st.setString(3, cidadeEstado);
-            st.setInt(4, novoUsuario.getId());
+            st.setInt(5, novoUsuario.getId());
             st.executeUpdate();
             st.close();
             Usuario newUser = new Usuario();
@@ -193,6 +247,9 @@ public class Conexao {
             newUser.setCidade(cidadeEstado);
             newUser.setId(novoUsuario.getId());
             newUser.setEmail(novoUsuario.getEmail());
+            if (imagem != null) {
+                newUser.setFoto(pegarImagemPessoa(newUser.getId()));
+            }
             return newUser;
         } catch (SQLException e) {
             e.printStackTrace();
