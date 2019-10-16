@@ -52,6 +52,13 @@ public class TelaCadastro extends javax.swing.JFrame {
         ImageIcon newIcon = new ImageIcon(newimg);
         labelDaFoto.setIcon(newIcon);
     }
+    public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto, int Largura, int Altura) {
+        ImageIcon icon = new ImageIcon(foto);
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(Largura, Altura, Image.SCALE_SMOOTH);
+        ImageIcon newIcon = new ImageIcon(newimg);
+        labelDaFoto.setIcon(newIcon);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,6 +272,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                     if (this.usuario == null) {
                         cn.inserirPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), campoEmail.getText(), arquivo);
                         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+                        new TelaInicial().setVisible(true);
                     } else {
                         this.usuario = cn.atualizarPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), arquivo, this.usuario);
                         JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);

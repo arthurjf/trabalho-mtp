@@ -32,7 +32,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "ifg";
+    private String senha = "fls2802";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -122,22 +122,7 @@ public class Conexao {
         } catch (Exception e) {
             e.getMessage();
             return null;
-        }
-    }*/
-    /**
-     * Método que cria a tabela pessoa para este exemplo.
-     *
-     * Normalmente, a criação de tabelas NÃO é feita pela aplicação.
-     */
-    public void criarTabela() {
-        try {
-            PreparedStatement st = this.conn.prepareStatement("CREATE TABLE pessoa (id serial primary key, nome text)");
-            st.execute();
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+        }*/
 
     private byte[] pegarImagemPessoa(int idUsuario) {
         try {
@@ -160,22 +145,6 @@ public class Conexao {
         return null;
     }
 
-    /**
-     * Método que insere uma pessoa no banco de dados
-     *
-     * Por enquanto, a pessoa está fixa!
-     */
-    public void inserir() {
-        try {
-            PreparedStatement st = this.conn.prepareStatement("INSERT INTO pessoa (nome) VALUES (?)");
-            st.setString(1, "Thiago");
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     /* Método que insere uma pessoa no banco de dados */
     public void inserirPessoa(String nome, String senha, String cidadeEstado, String email, File imagem) throws SQLException, FileNotFoundException {
         PreparedStatement ps;
@@ -194,25 +163,9 @@ public class Conexao {
         ps.close();
     }
 
-    /**
-     * Método que atualiza todos os nomes do banco de dados
-     *
-     * E se for necessário alterar para uma pessoa só? O que muda?
-     */
-    public void atualizar() {
-        try {
-            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?");
-            st.setString(1, "Thiago 2");
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     /* Método que cadastra o post criado pelo usuário no banco de dados */
     public void cadastrarPost(String texto, int idPessoa) throws SQLException {
-        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (id_pessoa, texto, data) VALUES (?, ?, now())");
+        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?, ?, now())");
         st.setInt(1, idPessoa);
         st.setString(2, texto);
         st.executeUpdate();
@@ -255,22 +208,6 @@ public class Conexao {
             e.printStackTrace();
         }
         return novoUsuario;
-    }
-
-    /**
-     * Método que exclui uma determinada pessoa do banco de dados
-     *
-     * Está sempre excluindo a mesma pessoa! A que tem ID = 1!
-     */
-    public void excluir() {
-        try {
-            PreparedStatement st = this.conn.prepareStatement("DELETE FROM pessoa WHERE id = ?");
-            st.setInt(1, 1);
-            st.executeUpdate();
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 }
