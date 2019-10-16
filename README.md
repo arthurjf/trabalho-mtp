@@ -6,7 +6,7 @@ Trabalho de MTP do IFG 2019/2
 **CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
 
 ## Criação da tabela "pessoa"
-CREATE TABLE pessoa (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VARCHAR(45) NOT NULL, senha VARCHAR(45), cidade_estado VARCHAR(45) NOT NULL, foto bytea, UNIQUE(email));
+**CREATE TABLE** pessoa (id **SERIAL PRIMARY KEY**, nome **VARCHAR(100) NOT NULL**, email **VARCHAR(45) NOT NULL**, senha **VARCHAR(45)**, cidade_estado **VARCHAR(45) NOT NULL**, foto **bytea**, **UNIQUE(**email**)**);
 
 # Requisitos e regras do trabalho
 - [X] O sistema deve permitir que, por meio de uma tela inicial, o usuário possa escolher se quer acessar o sistema ou cadastrar-se.
@@ -32,3 +32,9 @@ CREATE TABLE pessoa (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VA
 - [X] Somente usuários logados podem criar e “dar like” em posts.
 
 - [X] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
+
+- [X] *EXTRA* Gravar as imagens no banco de dados ao invés do disco rígido.
+
+- [X] *EXTRA* Permitir que o usuário possa, em seu cadastro, inserir sua foto.
+
+- [X] *EXTRA* Ao invés de utilizar contêineres fixos, construí-los de forma dinâmica de acordo com a lista buscada do banco de dados.
