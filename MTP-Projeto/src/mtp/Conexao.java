@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -105,24 +106,26 @@ public class Conexao {
     }
 
     /* Método que retorna uma ArrayList de posts */
- /*
-    public ArrayList<Post> buscarPosts(Usuario novoUsuario) {
+    public ArrayList<PostClass> buscarPosts(Usuario novoUsuario) {
         try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM pessoa AS pa JOIN post AS po on pa.id = po.id_pessoa ORDER BY po.id DESC FETCH FIRST 10 ROWS ONLY;");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id ORDER BY po.data DESC LIMIT(3);");
             ResultSet rs = ps.executeQuery();
-            ArrayList<Post> newPost = new ArrayList<Post>();
+            ArrayList<PostClass> newPost = new ArrayList<PostClass>();
             while (rs.next()) {
-                Post tempPost = new Post();
-                tempPost.setTexto(rs.getString(8));
-                tempPost.setData(rs.getString(10));
-                tempPost.setNome(rs.getString(2));
+                PostClass tempPost = new PostClass();
+                tempPost.setTexto(rs.getString(3));
+                tempPost.setData(rs.getTimestamp(2));
+                tempPost.setNome(rs.getString(1));
+                tempPost.setImagem(rs.getBytes(4));
                 newPost.add(tempPost);
             }
             return newPost;
         } catch (Exception e) {
             e.getMessage();
             return null;
-        }*/
+        }
+
+    }
 
     private byte[] pegarImagemPessoa(int idUsuario) {
         try {
@@ -164,8 +167,16 @@ public class Conexao {
     }
 
     /* Método que cadastra o post criado pelo usuário no banco de dados */
-    public void cadastrarPost(String texto, int idPessoa) throws SQLException {
-        PreparedStatement st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?, ?, now())");
+    public void cadastrarPost(String texto, int idPessoa, File arquivo) throws SQLException, FileNotFoundException {
+        PreparedStatement st;
+        if (arquivo == null) {
+            st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?, ?, now())");
+        }
+        else{
+            FileInputStream fis = new FileInputStream(arquivo);
+            st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data, imagem) VALUES (?, ?, now(), ?)");
+            st.setBinaryStream(3,fis,(int) arquivo.length());
+        }
         st.setInt(1, idPessoa);
         st.setString(2, texto);
         st.executeUpdate();

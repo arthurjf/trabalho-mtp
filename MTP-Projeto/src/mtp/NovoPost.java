@@ -5,8 +5,11 @@
  */
 package mtp;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.io.File;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -47,6 +50,7 @@ public class NovoPost extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jCampoTexto);
 
         jButton1.setText("Postar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -54,6 +58,7 @@ public class NovoPost extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -61,6 +66,7 @@ public class NovoPost extends javax.swing.JFrame {
         });
 
         jPostarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/14611 (1).png"))); // NOI18N
+        jPostarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPostarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPostarFotoMouseClicked(evt);
@@ -108,7 +114,7 @@ public class NovoPost extends javax.swing.JFrame {
         dispose();
         new TelaPrincipal(this.usuario).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    File arquivo = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jCampoTexto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
@@ -116,16 +122,18 @@ public class NovoPost extends javax.swing.JFrame {
             if (new String(jCampoTexto.getText()).length() > 140) {
                 JOptionPane.showMessageDialog(null, "O texto não pode ser maior que 140 caracteres");
             } else {
-                
+
                 Conexao conexao = new Conexao();
                 try {
-                    conexao.cadastrarPost(jCampoTexto.getText(), this.usuario.getId());
+                    conexao.cadastrarPost(jCampoTexto.getText(), this.usuario.getId(), arquivo);
                     JOptionPane.showMessageDialog(null, "Sucesso");
                     dispose();
                     new TelaPrincipal(this.usuario).setVisible(true);
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "ERROR, algo de errado não está certo....", "ERROR", JOptionPane.ERROR_MESSAGE);
 
+                } catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(null, "ERROR, algo de errado não está certo....", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -133,43 +141,15 @@ public class NovoPost extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPostarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPostarFotoMouseClicked
-        
+        JFileChooser fc = new JFileChooser();
+        int retorno = fc.showOpenDialog(this);
+        File novoArquivo = fc.getSelectedFile();;
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
+                arquivo = novoArquivo;
+            }
     }//GEN-LAST:event_jPostarFotoMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovoPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovoPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovoPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovoPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
-        });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
