@@ -25,14 +25,17 @@ public class Post extends javax.swing.JPanel {
         initComponents();
         this.novoPost = novoPost;
         SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        
+
         jNome.setText(this.novoPost.getNome());
         jData.setText(sp.format(this.novoPost.getData()));
         jTexto.setText(this.novoPost.getTexto());
-        jFoto.setIcon(new ImageIcon(this.novoPost.getImagem()));
+        if (this.novoPost.getImagem() != null) {
+            jFoto.setIcon(new ImageIcon(this.novoPost.getImagem()));
+        }
+
     }
-    private PostClass novoPost ;
-   
+    private PostClass novoPost;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
