@@ -13,9 +13,9 @@ CREATE TABLE pessoa (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VA
 
 - [X] O  sistema  deve  permitir  que  o  usuário  possa  alterar seus dados.
 
-- [ ] O sistema deve permitir que, após feito o login, o usuário possa visualizar uma tela com seus 03(três)últimos posts. A tela pode ter os contêineresfixosdos posts, mudando apenas os valores de acordo com os dados do banco de dados.
+- [X] O sistema deve permitir que, após feito o login, o usuário possa visualizar uma tela com seus 03(três)últimos posts. A tela pode ter os contêineresfixosdos posts, mudando apenas os valores de acordo com os dados do banco de dados.
 
-- [ ] O sistema deve permitir que o usuário possa criar um post. Um post poderá ser composto somente de texto, ou de texto e imagem.
+- [X] O sistema deve permitir que o usuário possa criar um post. Um post poderá ser composto somente de texto, ou de texto e imagem.
 
 - [ ] O sistema deverá mostrar o total de “likes” de cada post.
 
@@ -27,8 +27,8 @@ CREATE TABLE pessoa (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VA
 
 - [X] Cada post não poderá ter mais que 140 caracteres.
 
-- [ ] Um post pode conter somente uma imagem.
+- [X] Um post pode conter somente uma imagem.
 
-- [ ] Somente usuários logados podem criar e “dar like” em posts.
+- [X] Somente usuários logados podem criar e “dar like” em posts.
 
-- [ ] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
+- [X] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
