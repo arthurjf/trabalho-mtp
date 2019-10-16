@@ -33,8 +33,8 @@ Trabalho de MTP do IFG 2019/2
 
 - [X] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
 
-- [X] *EXTRA* Gravar as imagens no banco de dados ao invés do disco rígido.
+- [X] *{EXTRA}* Gravar as imagens no banco de dados ao invés do disco rígido.
 
-- [X] *EXTRA* Permitir que o usuário possa, em seu cadastro, inserir sua foto.
+- [X] *{EXTRA}* Permitir que o usuário possa, em seu cadastro, inserir sua foto.
 
-- [X] *EXTRA* Ao invés de utilizar contêineres fixos, construí-los de forma dinâmica de acordo com a lista buscada do banco de dados.
+- [X] *{EXTRA}* Ao invés de utilizar contêineres fixos, construí-los de forma dinâmica de acordo com a lista buscada do banco de dados.
