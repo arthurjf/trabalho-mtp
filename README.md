@@ -31,7 +31,7 @@ Trabalho de MTP do IFG 2019/2
 
 - [X] Somente usuários logados podem criar e “dar like” em posts.
 
-- [X] As fotos dos posts podem ser fixas e obtidas diretamente do disco rígido.
+- [X] As fotos dos posts podem ser fixas e obtidas diretamente do ~~disco rígido~~ banco de dados.
 
 - [X] *{EXTRA}* Gravar as imagens no banco de dados ao invés do disco rígido.
 
