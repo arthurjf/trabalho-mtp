@@ -143,7 +143,7 @@ public class NovoPost extends javax.swing.JFrame {
     private void jPostarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPostarFotoMouseClicked
         JFileChooser fc = new JFileChooser();
         int retorno = fc.showOpenDialog(this);
-        File novoArquivo = fc.getSelectedFile();;
+        File novoArquivo = fc.getSelectedFile();
         if (retorno == JFileChooser.APPROVE_OPTION) {
             if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
                 arquivo = novoArquivo;
