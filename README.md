@@ -2,11 +2,11 @@
 Trabalho de MTP do IFG 2019/2
 * Data de entrega 09/12/2019
 
-## Criação da tabela "post"
-**CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
-
 ## Criação da tabela "pessoa"
 **CREATE TABLE** pessoa (id **SERIAL PRIMARY KEY**, nome **VARCHAR(100) NOT NULL**, email **VARCHAR(45) NOT NULL**, senha **VARCHAR(45)**, cidade_estado **VARCHAR(45) NOT NULL**, foto **bytea**, **UNIQUE(**email**)**);
+
+## Criação da tabela "post"
+**CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
 
 ## Criação da tabela "like_post"
 create table like_post (id serial PRIMARY KEY NOT NULL, pessoa_id int, post_id int, data TIMESTAMP, FOREIGN KEY (pessoa_id) REFERENCES pessoa(id), FOREIGN KEY (post_id) REFERENCES post(id));
