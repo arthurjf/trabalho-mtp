@@ -14,10 +14,28 @@ import java.util.Date;
  */
 public class PostClass {
 
+    private int id;
+    private int likes;
     private String texto;
     private byte[] imagem;
     private Timestamp data;
     private String nome;
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -26,7 +44,7 @@ public class PostClass {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public String getTexto() {
         return texto;
     }

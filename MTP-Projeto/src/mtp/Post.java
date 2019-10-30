@@ -29,6 +29,7 @@ public class Post extends javax.swing.JPanel {
         jNome.setText(this.novoPost.getNome());
         jData.setText(sp.format(this.novoPost.getData()));
         jTexto.setText(this.novoPost.getTexto());
+        labelLikes.setText(Integer.toString(this.novoPost.getLikes()));
         if (this.novoPost.getImagem() != null) {
             jFoto.setIcon(new ImageIcon(this.novoPost.getImagem()));
         }
@@ -44,6 +45,7 @@ public class Post extends javax.swing.JPanel {
         jData = new javax.swing.JLabel();
         jTexto = new javax.swing.JLabel();
         jFoto = new javax.swing.JLabel();
+        labelLikes = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -55,6 +57,8 @@ public class Post extends javax.swing.JPanel {
         jTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jTexto.setText("jLabel4");
         jTexto.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        labelLikes.setText("likes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,7 +72,9 @@ public class Post extends javax.swing.JPanel {
                         .addComponent(jNome)
                         .addGap(182, 182, 182)
                         .addComponent(jData)
-                        .addGap(0, 211, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(labelLikes)
+                        .addGap(0, 150, Short.MAX_VALUE))
                     .addComponent(jFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -77,7 +83,8 @@ public class Post extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNome)
-                    .addComponent(jData))
+                    .addComponent(jData)
+                    .addComponent(labelLikes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTexto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -92,5 +99,6 @@ public class Post extends javax.swing.JPanel {
     private javax.swing.JLabel jFoto;
     private javax.swing.JLabel jNome;
     private javax.swing.JLabel jTexto;
+    private javax.swing.JLabel labelLikes;
     // End of variables declaration//GEN-END:variables
 }

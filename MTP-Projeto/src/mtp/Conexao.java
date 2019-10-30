@@ -33,7 +33,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "fls2802";
+    private String senha = "ifg";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -108,7 +108,7 @@ public class Conexao {
     /* Método que retorna uma ArrayList de posts */
     public ArrayList<PostClass> buscarPosts(Usuario novoUsuario) {
         try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id ORDER BY po.data DESC LIMIT(3);");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem, po.id, (select count(*) from like_post where post_id = po.id) as likes FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id ORDER BY po.data DESC LIMIT(3);");
             ResultSet rs = ps.executeQuery();
             ArrayList<PostClass> newPost = new ArrayList<PostClass>();
             while (rs.next()) {
@@ -117,6 +117,8 @@ public class Conexao {
                 tempPost.setData(rs.getTimestamp(2));
                 tempPost.setNome(rs.getString(1));
                 tempPost.setImagem(rs.getBytes(4));
+                tempPost.setId(rs.getInt(5));
+                tempPost.setLikes(rs.getInt(6));
                 newPost.add(tempPost);
             }
             return newPost;
@@ -124,7 +126,6 @@ public class Conexao {
             e.getMessage();
             return null;
         }
-
     }
 
     private byte[] pegarImagemPessoa(int idUsuario) {
@@ -171,11 +172,10 @@ public class Conexao {
         PreparedStatement st;
         if (arquivo == null) {
             st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data) VALUES (?, ?, now())");
-        }
-        else{
+        } else {
             FileInputStream fis = new FileInputStream(arquivo);
             st = this.conn.prepareStatement("INSERT INTO post (pessoa_id, texto, data, imagem) VALUES (?, ?, now(), ?)");
-            st.setBinaryStream(3,fis,(int) arquivo.length());
+            st.setBinaryStream(3, fis, (int) arquivo.length());
         }
         st.setInt(1, idPessoa);
         st.setString(2, texto);
