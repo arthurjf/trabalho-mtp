@@ -5,6 +5,8 @@
     <img src="https://www.ifg.edu.br/images/ifg/logo/logo-ifg-vertical.png" height="150" width="120">
   <br>
   <b> Trabalho de MTP do IFG 2019/2
+      <br>
+      <br>
 </p>
 
 ## Criação da tabela "pessoa"
