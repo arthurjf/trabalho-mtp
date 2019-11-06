@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Conexao {
 
@@ -33,7 +34,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "ifg";
+    private String senha = "fls2802";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -181,6 +182,18 @@ public class Conexao {
         st.setString(2, texto);
         st.executeUpdate();
         st.close();
+    }
+
+    public void cadastrarLike(PostClass novoPost, int idPessoa) {
+        try {
+            PreparedStatement st = this.conn.prepareStatement("INSERT INTO like_post(pessoa_id,post_id,data) VALUES (?,?,now())");
+            st.setInt(idPessoa, 1);
+            st.setInt(novoPost.getId(), 2);
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+
+        }
     }
 
     /* Método que atualiza a pessoa no banco de dados */
