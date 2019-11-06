@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +35,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "fls2802";
+    private String senha = "ifg";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -129,27 +130,6 @@ public class Conexao {
         }
     }
 
-    private byte[] pegarImagemPessoa(int idUsuario) {
-        try {
-            PreparedStatement st = this.conn.prepareStatement("SELECT foto FROM pessoa WHERE id = ?");
-            st.setInt(1, idUsuario);
-            ResultSet rs = st.executeQuery();
-
-            if (rs.next()) {
-                byte[] binario = rs.getBytes(1);
-                InputStream is = new ByteArrayInputStream(binario);
-                BufferedImage imag = ImageIO.read(is);
-                ImageIcon icon = new ImageIcon(imag);
-                return rs.getBytes(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     /* Método que insere uma pessoa no banco de dados */
     public void inserirPessoa(String nome, String senha, String cidadeEstado, String email, File imagem) throws SQLException, FileNotFoundException {
         PreparedStatement ps;
@@ -225,7 +205,12 @@ public class Conexao {
             newUser.setId(novoUsuario.getId());
             newUser.setEmail(novoUsuario.getEmail());
             if (imagem != null) {
-                newUser.setFoto(pegarImagemPessoa(newUser.getId()));
+                try {
+                    byte[] newFoto = Files.readAllBytes(imagem.toPath());
+                    newUser.setFoto(newFoto);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return newUser;
         } catch (SQLException e) {
