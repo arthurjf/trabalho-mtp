@@ -16,7 +16,7 @@
 > **CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
 
 ## Criação da tabela "like_post"
-> **CREATE TABLE** like_post (id **SERIAL PRIMARY KEY NOT NULL**, pessoa_id **int**, post_id **int**, data **TIMESTAMP**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), **FOREIGN KEY** (post_id) **REFERENCES** post(id));
+> CREATE TABLE like_post (id SERIAL PRIMARY KEY NOT NULL, pessoa_id int, post_id int, data TIMESTAMP, FOREIGN KEY (pessoa_id) REFERENCES pessoa(id), FOREIGN KEY (post_id) REFERENCES post(id), UNIQUE(pessoa_id, post_id));
 
 # Requisitos e regras do trabalho
 - [X] O sistema deve permitir que, por meio de uma tela inicial, o usuário possa escolher se quer acessar o sistema ou cadastrar-se.
