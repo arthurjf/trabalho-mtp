@@ -19,9 +19,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         conexao.conectar();
         ArrayList<PostClass> posts = conexao.buscarPosts(this.usuario);
         for (int i = 0; i < posts.size(); i++) {
-            jPanel3.add(new Post(posts.get(i),this.usuario.getId()));
+            jPanel3.add(new Post(posts.get(i), this.usuario.getId()));
         }
-        jNome.setText("Olá, "+this.usuario.getNome());
+        jNome.setText("Olá, " + this.usuario.getNome());
     }
 
     @SuppressWarnings("unchecked")

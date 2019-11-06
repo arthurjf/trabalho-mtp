@@ -109,10 +109,11 @@ public class Conexao {
 
     /* Método que retorna uma ArrayList de posts */
     public ArrayList<PostClass> buscarPosts(Usuario novoUsuario) {
+        ArrayList<PostClass> newPost = new ArrayList<>();
         try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem, po.id, (select count(*) from like_post where post_id = po.id) as likes FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id ORDER BY po.data DESC LIMIT(3);");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem, po.id, (select count(*) from like_post where post_id = po.id) as likes FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id WHERE po.pessoa_id = ? ORDER BY po.data DESC LIMIT(3);");
+            ps.setInt(1, novoUsuario.getId());
             ResultSet rs = ps.executeQuery();
-            ArrayList<PostClass> newPost = new ArrayList<PostClass>();
             while (rs.next()) {
                 PostClass tempPost = new PostClass();
                 tempPost.setTexto(rs.getString(3));
@@ -124,9 +125,9 @@ public class Conexao {
                 newPost.add(tempPost);
             }
             return newPost;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return newPost;
         }
     }
 
@@ -164,15 +165,15 @@ public class Conexao {
         st.close();
     }
 
-    public void cadastrarLike(PostClass novoPost, int idPessoa) {
+    public void cadastrarLikes(int idPost, int idPessoa) {
         try {
-            PreparedStatement st = this.conn.prepareStatement("INSERT INTO like_post(pessoa_id,post_id,data) VALUES (?,?,now())");
-            st.setInt(idPessoa, 1);
-            st.setInt(novoPost.getId(), 2);
-            st.executeUpdate();
-            st.close();
+            PreparedStatement ps = this.conn.prepareStatement("INSERT INTO like_post (pessoa_id, post_id, data) values (?, ?, now());");
+            ps.setInt(1, idPessoa);
+            ps.setInt(2, idPost);
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
-
+            e.printStackTrace();
         }
     }
 

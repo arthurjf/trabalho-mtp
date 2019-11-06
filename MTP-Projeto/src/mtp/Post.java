@@ -22,12 +22,11 @@ public class Post extends javax.swing.JPanel {
     /**
      * Creates new form Post
      */
-    public Post(PostClass novoPost, int setPessoaId) {
-        this.pessoaId = setPessoaId;
+    public Post(PostClass novoPost, int idPessoa) {
+        this.idPessoa = idPessoa;
         initComponents();
         this.novoPost = novoPost;
         SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
         jNome.setText(this.novoPost.getNome());
         jData.setText(sp.format(this.novoPost.getData()));
         jTexto.setText(this.novoPost.getTexto());
@@ -37,7 +36,8 @@ public class Post extends javax.swing.JPanel {
         }
 
     }
-    private int pessoaId;
+
+    private int idPessoa;
 
     private PostClass novoPost;
 
@@ -122,8 +122,7 @@ public class Post extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         Conexao conexao = new Conexao();
         conexao.conectar();
-        conexao.cadastrarLike(this.novoPost, pessoaId);
-        JOptionPane.showMessageDialog(null, pessoaId);
+        conexao.cadastrarLikes(novoPost.getId(), idPessoa);
     }//GEN-LAST:event_jLabel1MouseClicked
 
 
