@@ -35,7 +35,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "ifg";
+    private String senha = "fls2802";
 
     // variável que guarda a conexão
     private Connection conn;
