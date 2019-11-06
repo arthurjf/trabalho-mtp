@@ -1,4 +1,4 @@
-﻿# **Trabalho MTP**
+# **Trabalho MTP**
 * Data de entrega 09/12/2019
 
 <p align="center">
