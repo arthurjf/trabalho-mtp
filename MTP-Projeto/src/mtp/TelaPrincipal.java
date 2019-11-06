@@ -8,7 +8,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private Usuario usuario;
 
     public TelaPrincipal(Usuario usuario) {
-
         initComponents();
         this.usuario = usuario;
         setLocationRelativeTo(null);
@@ -22,6 +21,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel3.add(new Post(posts.get(i), this.usuario.getId()));
         }
         jNome.setText("Olá, " + this.usuario.getNome());
+        setTitle("Perfil de " + this.usuario.getNome());
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +42,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jAlterarCadastro.setBackground(new java.awt.Color(0, 0, 255));
+        jAlterarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jAlterarCadastro.setText("Alterar Cadastro");
         jAlterarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAlterarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -51,6 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 0, 255));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sair");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +65,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon100.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(0, 0, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Criar Post");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
