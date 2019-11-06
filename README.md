@@ -1,4 +1,4 @@
-# **Trabalho MTP**
+﻿# **Trabalho MTP**
 * Data de entrega 09/12/2019
 
 <p align="center">
@@ -29,7 +29,7 @@
 
 - [X] O sistema deve permitir que o usuário possa criar um post. Um post poderá ser composto somente de texto, ou de texto e imagem.
 
-- [ ] O sistema deverá mostrar o total de “likes” de cada post.
+- [X] O sistema deverá mostrar o total de “likes” de cada post.
 
 - [X] O sistema deve tratar as mensagens de erro e devolvê-las de forma amigável ao usuário.
 
