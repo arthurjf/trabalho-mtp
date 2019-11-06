@@ -38,20 +38,13 @@ public class TelaCadastro extends javax.swing.JFrame {
             jConfirmar.setText("Alterar");
             setTitle("Alterar cadastro");
             if (this.usuario.getFoto() != null) {
-                setTempFotoIcon(this.usuario.getFoto(), labelFoto);
+                setTempFotoIcon(this.usuario.getFoto(), labelFoto, 139, 139);
             }
         } else {
             setTitle("Cadastrar");
         }
     }
 
-    public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto) {
-        ImageIcon icon = new ImageIcon(foto);
-        Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(139, 139, Image.SCALE_SMOOTH);
-        ImageIcon newIcon = new ImageIcon(newimg);
-        labelDaFoto.setIcon(newIcon);
-    }
     public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto, int Largura, int Altura) {
         ImageIcon icon = new ImageIcon(foto);
         Image img = icon.getImage();
@@ -308,16 +301,16 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void botaoAlterarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarFotoMouseClicked
         JFileChooser fc = new JFileChooser();
         int retorno = fc.showOpenDialog(this);
-        File novoArquivo = fc.getSelectedFile();;
+        File novoArquivo = fc.getSelectedFile();
         if (retorno == JFileChooser.APPROVE_OPTION) {
             if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
                 arquivo = novoArquivo;
                 byte[] fileContent;
                 try {
                     fileContent = Files.readAllBytes(arquivo.toPath());
-                    setTempFotoIcon(fileContent, labelFoto);
+                    setTempFotoIcon(fileContent, labelFoto, 139, 139);
                 } catch (IOException e) {
-                    JOptionPane.showMessageDialog(null, "<html>Tipo de arquivo incorreto!<br>Por favor, insira um arquivo válido como: png, jpg ou bmp</html>", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "<html>Tipo de arquivo incorreto!<br>Por favor, insira um arquivo válido como: png, jpg ou bmp</html>", "ERROR", JOptionPane.ERROR_MESSAGE);
