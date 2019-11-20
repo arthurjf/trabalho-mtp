@@ -204,11 +204,15 @@ public class Conexao {
             st.executeUpdate();
             st.close();
             Usuario newUser = new Usuario();
-            if (imagem != null) {
-                try {
-                    byte[] newFoto = Files.readAllBytes(imagem.toPath());
-                    newUser.setFoto(newFoto);
-                } catch (IOException e) {
+            if (imagem != null || novoUsuario.getFoto() != null) {
+                if (imagem != null) {
+                    try {
+                        byte[] newFoto = Files.readAllBytes(imagem.toPath());
+                        newUser.setFoto(newFoto);
+                    } catch (IOException e) {
+                    }
+                } else {
+                    newUser.setFoto(novoUsuario.getFoto());
                 }
             }
             newUser.setNome(nome);
