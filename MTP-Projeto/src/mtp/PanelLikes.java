@@ -8,7 +8,7 @@ public class PanelLikes extends javax.swing.JPanel {
         initComponents();
         labelNome.setText(pessoa.getNome());
         SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        labelData.setText(sp.format(pessoa.getData()));
+        labelData.setText("Curtiu o post em: " + sp.format(pessoa.getData()));
         if (pessoa.getImagem() != null) {
             TelaCadastro.setTempFotoIcon(pessoa.getImagem(), labelFoto, 139, 139);
         }

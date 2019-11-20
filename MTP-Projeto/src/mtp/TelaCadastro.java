@@ -84,15 +84,15 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(162, 245, 135));
 
-        campoNome.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoNome.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         campoNome.setForeground(new java.awt.Color(64, 64, 64));
         campoNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
-        campoEmail.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoEmail.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         campoEmail.setForeground(new java.awt.Color(64, 64, 64));
         campoEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
-        campoCidadeEstado.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoCidadeEstado.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         campoCidadeEstado.setForeground(new java.awt.Color(64, 64, 64));
         campoCidadeEstado.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
@@ -113,11 +113,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jConSenha1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jConSenha1.setText("Confirmar Senha");
 
-        campoSenha.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoSenha.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         campoSenha.setForeground(new java.awt.Color(64, 64, 64));
         campoSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
-        campoConfirmarSenha.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoConfirmarSenha.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         campoConfirmarSenha.setForeground(new java.awt.Color(64, 64, 64));
         campoConfirmarSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(124, 190, 103), 2));
 
