@@ -5,13 +5,6 @@
  */
 package mtp;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
-/**
- *
- * @author filip
- */
 public class Usuario {
 
     private Integer id;

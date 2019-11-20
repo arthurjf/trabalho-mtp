@@ -4,20 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author filip
- */
 public class TelaLogin extends javax.swing.JFrame implements ActionListener {
 
-    /**
-     * Creates new form MeuFrame
-     */
     public TelaLogin() {
         initComponents();
         setLocationRelativeTo(null);

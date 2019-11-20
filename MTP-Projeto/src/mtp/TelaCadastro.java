@@ -5,11 +5,9 @@
  */
 package mtp;
 
-import java.sql.SQLException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.io.File;
-import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.io.IOException;
@@ -33,6 +31,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             campoEmail.setText(this.usuario.getEmail());
             campoCidadeEstado.setText(this.usuario.getCidade());
             campoSenha.setText(this.usuario.getSenha());
+            campoConfirmarSenha.setText(this.usuario.getSenha());
             campoEmail.setEditable(false);
             campoEmail.setEnabled(false);
             jConfirmar.setText("Alterar");
@@ -264,26 +263,23 @@ public class TelaCadastro extends javax.swing.JFrame {
                 try {
                     if (this.usuario == null) {
                         cn.inserirPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), campoEmail.getText(), arquivo);
-                        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                         new TelaInicial().setVisible(true);
                     } else {
                         this.usuario = cn.atualizarPessoa(campoNome.getText(), new String(campoSenha.getPassword()), campoCidadeEstado.getText(), arquivo, this.usuario);
-                        JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Dados alterados com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                         new TelaPrincipal(this.usuario).setVisible(true);
                         this.dispose();
                     }
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Não foi possível efetuar o cadastro.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                } catch (FileNotFoundException e) {
-                    JOptionPane.showMessageDialog(null, "Não foi possível encontrar o arquivo.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível efetuar o cadastro.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
             } else {
-                JOptionPane.showMessageDialog(null, "As senhas devem ser iguais!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "As senhas devem ser iguais!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jConfirmarActionPerformed
 
@@ -303,17 +299,17 @@ public class TelaCadastro extends javax.swing.JFrame {
         int retorno = fc.showOpenDialog(this);
         File novoArquivo = fc.getSelectedFile();
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
+            try {
+                MyUtil.filtrarArquivoParaImagem(novoArquivo);
                 arquivo = novoArquivo;
                 byte[] fileContent;
                 try {
                     fileContent = Files.readAllBytes(arquivo.toPath());
                     setTempFotoIcon(fileContent, labelFoto, 139, 139);
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "<html>Tipo de arquivo incorreto!<br>Por favor, insira um arquivo válido como: png, jpg ou bmp</html>", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Imagem não encontrada ou formato incompatível", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_botaoAlterarFotoMouseClicked

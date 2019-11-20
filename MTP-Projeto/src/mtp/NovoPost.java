@@ -5,8 +5,7 @@
  */
 package mtp;
 
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -23,6 +22,8 @@ public class NovoPost extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.usuario = novoUsuario;
+        checarSeArquivoExiste();
+        checarTexto();
     }
 
     /**
@@ -40,19 +41,27 @@ public class NovoPost extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPostarFoto = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        labelPreviousImage = new javax.swing.JLabel();
+        labelTextoTamanho = new javax.swing.JLabel();
+        buttonRemoverImagem = new javax.swing.JButton();
+        labelTextoImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Novo Post");
 
-        jLabel1.setText("Post");
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLabel1.setText("Texto:");
 
         jCampoTexto.setColumns(20);
         jCampoTexto.setLineWrap(true);
         jCampoTexto.setRows(5);
+        jCampoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jCampoTextoKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jCampoTexto);
 
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton1.setText("Postar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +70,7 @@ public class NovoPost extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -77,61 +87,72 @@ public class NovoPost extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jLabel2");
+        labelTextoTamanho.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        labelTextoTamanho.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelTextoTamanho.setText("0/140");
+
+        buttonRemoverImagem.setText("Remover imagem");
+        buttonRemoverImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoverImagemActionPerformed(evt);
+            }
+        });
+
+        labelTextoImagem.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        labelTextoImagem.setText("nome imagem");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(32, 32, 32)
-                                .addComponent(jButton2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(145, 145, 145)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPostarFoto)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelPreviousImage)
-                                .addGap(149, 149, 149))))))
+                                .addComponent(jPostarFoto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelTextoImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(329, 329, 329))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelTextoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonRemoverImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 7, Short.MAX_VALUE)
-                                .addComponent(jPostarFoto))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelPreviousImage)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(19, 19, 19))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTextoTamanho))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPostarFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTextoImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonRemoverImagem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -141,30 +162,27 @@ public class NovoPost extends javax.swing.JFrame {
         dispose();
         new TelaPrincipal(this.usuario).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
     File arquivo = null;
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jCampoTexto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "O campo não pode estar vazio");
+            JOptionPane.showMessageDialog(null, "O campo de texto não pode estar vazio!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (new String(jCampoTexto.getText()).length() > 140) {
-                JOptionPane.showMessageDialog(null, "O texto não pode ser maior que 140 caracteres");
+            if (textoMuitoGrande()) {
+                JOptionPane.showMessageDialog(null, "O texto não pode ser maior que 140 caracteres!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-
                 Conexao conexao = new Conexao();
                 try {
                     conexao.cadastrarPost(jCampoTexto.getText(), this.usuario.getId(), arquivo);
-                    JOptionPane.showMessageDialog(null, "Sucesso");
+                    JOptionPane.showMessageDialog(null, "Seu post foi publicado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     new TelaPrincipal(this.usuario).setVisible(true);
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "ERROR, algo de errado não está certo....", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-                } catch (FileNotFoundException e) {
-                    JOptionPane.showMessageDialog(null, "ERROR, algo de errado não está certo....", "ERROR", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Não foi possível cadastrar seu post...", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPostarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPostarFotoMouseClicked
@@ -172,19 +190,59 @@ public class NovoPost extends javax.swing.JFrame {
         int retorno = fc.showOpenDialog(this);
         File novoArquivo = fc.getSelectedFile();
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            if (novoArquivo.getName().toLowerCase().endsWith(".png") || novoArquivo.getName().toLowerCase().endsWith(".jpg") || novoArquivo.getName().toLowerCase().endsWith(".bmp")) {
+            try {
+                MyUtil.filtrarArquivoParaImagem(novoArquivo);
                 arquivo = novoArquivo;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Imagem não encontrada ou formato incompatível", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        checarSeArquivoExiste();
     }//GEN-LAST:event_jPostarFotoMouseClicked
+
+    private void checarSeArquivoExiste() {
+        if (arquivo != null) {
+            buttonRemoverImagem.setVisible(true);
+            buttonRemoverImagem.enable(true);
+            labelTextoImagem.setText(arquivo.getName());
+        } else {
+            buttonRemoverImagem.setVisible(false);
+            buttonRemoverImagem.enable(false);
+            labelTextoImagem.setText("");
+        }
     }
+
+    private boolean textoMuitoGrande() {
+        return (jCampoTexto.getText().length() > 140) ? true : false;
+    }
+
+    private void buttonRemoverImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverImagemActionPerformed
+        arquivo = null;
+        checarSeArquivoExiste();
+    }//GEN-LAST:event_buttonRemoverImagemActionPerformed
+
+    private void checarTexto() {
+        labelTextoTamanho.setText(Integer.toString(jCampoTexto.getText().length()) + "/140");
+        if (textoMuitoGrande()) {
+            labelTextoTamanho.setForeground(Color.RED);
+        } else {
+            labelTextoTamanho.setForeground(Color.BLACK);
+        }
+    }
+
+    private void jCampoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCampoTextoKeyTyped
+        checarTexto();
+    }//GEN-LAST:event_jCampoTextoKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonRemoverImagem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JTextArea jCampoTexto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jPostarFoto;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelPreviousImage;
+    private javax.swing.JLabel labelTextoImagem;
+    private javax.swing.JLabel labelTextoTamanho;
     // End of variables declaration//GEN-END:variables
 }

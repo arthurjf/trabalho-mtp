@@ -10,10 +10,10 @@
 </p>
 
 ## Criação da tabela "pessoa"
-> **CREATE TABLE** pessoa (id **SERIAL PRIMARY KEY**, nome **VARCHAR(100) NOT NULL**, email **VARCHAR(45) NOT NULL**, senha **VARCHAR(45)**, cidade_estado **VARCHAR(45) NOT NULL**, foto **bytea**, **UNIQUE(**email**)**);
+> CREATE TABLE pessoa (id SERIAL PRIMARY KEY, nome VARCHAR(100) NOT NULL, email VARCHAR(45) NOT NULL, senha VARCHAR(45), cidade_estado VARCHAR(45) NOT NULL, foto bytea, UNIQUE(email));
 
 ## Criação da tabela "post"
-> **CREATE TABLE** post (id **SERIAL PRIMARY KEY**, texto **VARCHAR(140) NOT NULL**, imagem **bytea**, pessoa_id **int**, **FOREIGN KEY** (pessoa_id) **REFERENCES** pessoa(id), data **TIMESTAMP**);
+> CREATE TABLE post (id SERIAL PRIMARY KEY, texto VARCHAR(140) NOT NULL, imagem bytea, pessoa_id int, FOREIGN KEY (pessoa_id) REFERENCES pessoa(id), data TIMESTAMP);
 
 ## Criação da tabela "like_post"
 > CREATE TABLE like_post (id SERIAL PRIMARY KEY NOT NULL, pessoa_id int, post_id int, data TIMESTAMP, FOREIGN KEY (pessoa_id) REFERENCES pessoa(id), FOREIGN KEY (post_id) REFERENCES post(id), UNIQUE(pessoa_id, post_id));
@@ -50,3 +50,5 @@
 - [X] *{EXTRA}* Permitir que o usuário possa, em seu cadastro, inserir sua foto.
 
 - [X] *{EXTRA}* Ao invés de utilizar contêineres fixos, construí-los de forma dinâmica de acordo com a lista buscada do banco de dados.
+
+- [X] *{EXTRA}* Ao clicar nos “likes”, deve ser aberta uma tela que liste as pessoas que deram os referidos “likes”.

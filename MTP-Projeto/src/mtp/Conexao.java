@@ -1,16 +1,10 @@
 package mtp;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.file.Files;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,11 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Conexao {
 
@@ -35,7 +24,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "fls2802";
+    private String senha = "ifg";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -126,7 +115,26 @@ public class Conexao {
             }
             return newPost;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return newPost;
+        }
+    }
+
+    /* Método que retorna uma ArrayList de posts */
+    public ArrayList<PostClass> buscarLikesPessoas(int postId) {
+        ArrayList<PostClass> newPost = new ArrayList<>();
+        try {
+            PreparedStatement ps = this.conn.prepareStatement("SELECT p.nome ,l.data, p.foto FROM like_post AS l JOIN pessoa AS p ON l.pessoa_id = p.id JOIN post AS po ON l.post_id = po.id WHERE l.post_id = ? ORDER BY l.data DESC;");
+            ps.setInt(1, postId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PostClass tempPost = new PostClass();
+                tempPost.setNome(rs.getString(1));
+                tempPost.setData(rs.getTimestamp(2));
+                tempPost.setImagem(rs.getBytes(3));
+                newPost.add(tempPost);
+            }
+            return newPost;
+        } catch (SQLException e) {
             return newPost;
         }
     }
@@ -165,57 +173,51 @@ public class Conexao {
         st.close();
     }
 
-    public void cadastrarLikes(int idPost, int idPessoa) {
-        try {
-            PreparedStatement ps = this.conn.prepareStatement("INSERT INTO like_post (pessoa_id, post_id, data) values (?, ?, now());");
-            ps.setInt(1, idPessoa);
-            ps.setInt(2, idPost);
-            ps.executeUpdate();
-            ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    /* Método para cadastrar o like no post */
+    public void cadastrarLikes(int idPost, int idPessoa) throws SQLException {
+        PreparedStatement ps = this.conn.prepareStatement("INSERT INTO like_post (pessoa_id, post_id, data) values (?, ?, now());");
+        ps.setInt(1, idPessoa);
+        ps.setInt(2, idPost);
+        ps.executeUpdate();
+        ps.close();
     }
 
     /* Método que atualiza a pessoa no banco de dados */
-    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, File imagem, Usuario novoUsuario) throws FileNotFoundException {
+    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, File imagem, Usuario novoUsuario) {
         try {
             PreparedStatement st;
             if (imagem == null) {
                 st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ? WHERE id = ?");
-
+                st.setInt(4, novoUsuario.getId());
             } else {
                 st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ?, foto = ? WHERE id = ?");
+                st.setInt(5, novoUsuario.getId());
                 try {
                     FileInputStream fis = new FileInputStream(imagem);
                     st.setBinaryStream(4, fis, (int) imagem.length());
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 }
             }
             st.setString(1, nome);
             st.setString(2, senha);
             st.setString(3, cidadeEstado);
-            st.setInt(5, novoUsuario.getId());
             st.executeUpdate();
             st.close();
             Usuario newUser = new Usuario();
-            newUser.setNome(nome);
-            newUser.setSenha(senha);
-            newUser.setCidade(cidadeEstado);
-            newUser.setId(novoUsuario.getId());
-            newUser.setEmail(novoUsuario.getEmail());
             if (imagem != null) {
                 try {
                     byte[] newFoto = Files.readAllBytes(imagem.toPath());
                     newUser.setFoto(newFoto);
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
+            newUser.setNome(nome);
+            newUser.setSenha(senha);
+            newUser.setCidade(cidadeEstado);
+            newUser.setId(novoUsuario.getId());
+            newUser.setEmail(novoUsuario.getEmail());
             return newUser;
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return novoUsuario;
     }
