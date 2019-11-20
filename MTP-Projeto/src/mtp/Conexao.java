@@ -35,7 +35,7 @@ public class Conexao {
     private String usuario = "postgres";
 
     // senha do postgres
-    private String senha = "fls2802";
+    private String senha = "ifg";
 
     // variável que guarda a conexão
     private Connection conn;
@@ -107,12 +107,29 @@ public class Conexao {
         }
     }
 
+    public int pegarQuantidadePosts(int idPessoa) {
+        try {
+            PreparedStatement ps = this.conn.prepareStatement("SELECT count(*) as quatidade_posts from post where pessoa_id = ?");
+            ps.setInt(1, idPessoa);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     /* Método que retorna uma ArrayList de posts */
-    public ArrayList<PostClass> buscarPosts(Usuario novoUsuario) {
+    public ArrayList<PostClass> buscarPosts(Usuario novoUsuario, int offset) {
         ArrayList<PostClass> newPost = new ArrayList<>();
         try {
-            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem, po.id, (select count(*) from like_post where post_id = po.id) as likes FROM pessoa AS pa JOIN post AS po on pa.id = po.pessoa_id WHERE po.pessoa_id = ? ORDER BY po.data DESC LIMIT(3);");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT pa.nome, po.data, po.texto, po.imagem, po.id, (select count(*) from"
+                    + " like_post where post_id = po.id) as likes FROM pessoa AS pa\n"
+                    + "JOIN post AS po on pa.id = po.pessoa_id WHERE po.pessoa_id = ? ORDER BY po.data DESC LIMIT(3) OFFSET(?);");
             ps.setInt(1, novoUsuario.getId());
+            ps.setInt(2, offset);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 PostClass tempPost = new PostClass();

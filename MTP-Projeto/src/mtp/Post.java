@@ -5,6 +5,7 @@
  */
 package mtp;
 
+import java.awt.Image;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -32,7 +33,13 @@ public class Post extends javax.swing.JPanel {
         jTexto.setText(this.novoPost.getTexto());
         labelLikes.setText(Integer.toString(this.novoPost.getLikes()));
         if (this.novoPost.getImagem() != null) {
-            jFoto.setIcon(new ImageIcon(this.novoPost.getImagem()));
+            ImageIcon icon = new ImageIcon(this.novoPost.getImagem());
+            Image img = icon.getImage();
+            float aspectRatio = (float) icon.getIconWidth() / icon.getIconHeight();
+            int novaAltura = (int) ((float) aspectRatio * 300);
+            Image newimg = img.getScaledInstance(novaAltura, 300, Image.SCALE_SMOOTH);
+            ImageIcon newIcon = new ImageIcon(newimg);
+            jFoto.setIcon(newIcon);
         }
 
     }

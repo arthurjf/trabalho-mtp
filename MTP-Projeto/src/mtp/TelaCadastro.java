@@ -48,7 +48,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto, int Largura, int Altura) {
         ImageIcon icon = new ImageIcon(foto);
         Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(Largura, Altura, Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(Altura, Largura, Image.SCALE_SMOOTH);
         ImageIcon newIcon = new ImageIcon(newimg);
         labelDaFoto.setIcon(newIcon);
     }
