@@ -1,5 +1,6 @@
 package mtp;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class TelaPrincipal extends javax.swing.JFrame {
@@ -8,19 +9,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal(Usuario usuario) {
         initComponents();
+        MyUtil.setarCorDaJanela(this, new Color(245, 245, 245));
         this.usuario = usuario;
+        setTitle("Perfil de " + this.usuario.getNome());
+        jNome.setText("Olá, " + this.usuario.getNome());
         setLocationRelativeTo(null);
         if (this.usuario.getFoto() != null) {
             TelaCadastro.setTempFotoIcon(this.usuario.getFoto(), jLabel1, 100, 100);
         }
+        buscarPosts();
+    }
+
+    private void buscarPosts() {
         Conexao conexao = new Conexao();
         conexao.conectar();
         ArrayList<PostClass> posts = conexao.buscarPosts(this.usuario);
         for (int i = 0; i < posts.size(); i++) {
-            jPanel3.add(new Post(posts.get(i), this.usuario.getId()));
+            jPanel3.add(new PanelPost(posts.get(i), this.usuario.getId()));
         }
-        jNome.setText("Olá, " + this.usuario.getNome());
-        setTitle("Perfil de " + this.usuario.getNome());
     }
 
     @SuppressWarnings("unchecked")
@@ -38,6 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jAlterarCadastro.setBackground(new java.awt.Color(0, 0, 255));
+        jAlterarCadastro.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jAlterarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jAlterarCadastro.setText("Alterar Cadastro");
         jAlterarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -48,6 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(0, 0, 255));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sair");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -61,6 +69,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon100.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(0, 0, 255));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Criar Post");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -93,7 +102,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jAlterarCadastro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addGap(23, 23, 23))
                             .addGroup(layout.createSequentialGroup()
@@ -121,7 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
         );
 
         pack();

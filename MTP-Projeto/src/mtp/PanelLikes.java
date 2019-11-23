@@ -1,11 +1,13 @@
 package mtp;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 
 public class PanelLikes extends javax.swing.JPanel {
 
     public PanelLikes(PostClass pessoa) {
         initComponents();
+        setBackground(Color.white);
         labelNome.setText(pessoa.getNome());
         SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         labelData.setText("Curtiu o post em: " + sp.format(pessoa.getData()));
@@ -63,6 +65,7 @@ public class PanelLikes extends javax.swing.JPanel {
         labelNome.setText("Nome");
 
         labelData.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        labelData.setForeground(new java.awt.Color(91, 91, 91));
         labelData.setText("Curtiu o post em: 00/00/0000");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

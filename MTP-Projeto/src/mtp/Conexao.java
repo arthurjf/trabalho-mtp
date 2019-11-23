@@ -140,14 +140,13 @@ public class Conexao {
     }
 
     /* Método que insere uma pessoa no banco de dados */
-    public void inserirPessoa(String nome, String senha, String cidadeEstado, String email, File imagem) throws SQLException, FileNotFoundException {
+    public void inserirPessoa(String nome, String senha, String cidadeEstado, String email, byte[] imagem) throws SQLException, FileNotFoundException {
         PreparedStatement ps;
         if (imagem == null) {
             ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado) values (?, ?, ?, ?);");
         } else {
-            FileInputStream fis = new FileInputStream(imagem);
             ps = this.conn.prepareStatement("INSERT INTO pessoa (nome, email, senha, cidade_estado, foto) values (?, ?, ?, ?, ?);");
-            ps.setBinaryStream(5, fis, (int) imagem.length());
+            ps.setBytes(5, imagem);
         }
         ps.setString(1, nome);
         ps.setString(2, email);
@@ -183,38 +182,18 @@ public class Conexao {
     }
 
     /* Método que atualiza a pessoa no banco de dados */
-    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, File imagem, Usuario novoUsuario) {
+    public Usuario atualizarPessoa(String nome, String senha, String cidadeEstado, byte[] imagem, Usuario novoUsuario) {
         try {
-            PreparedStatement st;
-            if (imagem == null) {
-                st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ? WHERE id = ?");
-                st.setInt(4, novoUsuario.getId());
-            } else {
-                st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ?, foto = ? WHERE id = ?");
-                st.setInt(5, novoUsuario.getId());
-                try {
-                    FileInputStream fis = new FileInputStream(imagem);
-                    st.setBinaryStream(4, fis, (int) imagem.length());
-                } catch (FileNotFoundException e) {
-                }
-            }
+            PreparedStatement st = this.conn.prepareStatement("UPDATE pessoa SET nome = ?, senha = ?, cidade_estado = ?, foto = ? WHERE id = ?");
             st.setString(1, nome);
             st.setString(2, senha);
             st.setString(3, cidadeEstado);
+            st.setBytes(4, imagem);
+            st.setInt(5, novoUsuario.getId());
             st.executeUpdate();
             st.close();
             Usuario newUser = new Usuario();
-            if (imagem != null || novoUsuario.getFoto() != null) {
-                if (imagem != null) {
-                    try {
-                        byte[] newFoto = Files.readAllBytes(imagem.toPath());
-                        newUser.setFoto(newFoto);
-                    } catch (IOException e) {
-                    }
-                } else {
-                    newUser.setFoto(novoUsuario.getFoto());
-                }
-            }
+            newUser.setFoto(imagem);
             newUser.setNome(nome);
             newUser.setSenha(senha);
             newUser.setCidade(cidadeEstado);
