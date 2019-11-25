@@ -79,7 +79,7 @@
                       <Component id="labelFoto" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="botaoAlterarFoto" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAlterarFoto" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -92,7 +92,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelFoto" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="botaoAlterarFoto" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonAlterarFoto" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="buttonRemoverFoto" min="-2" max="-2" attributes="0"/>
@@ -258,7 +258,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="botaoAlterarFoto">
+        <Component class="javax.swing.JLabel" name="buttonAlterarFoto">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/mtp/imagens/edit_icon.png"/>
@@ -268,7 +268,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoAlterarFotoMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonAlterarFotoMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -305,9 +305,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jConfirmar" min="-2" pref="133" max="-2" attributes="0"/>
+                  <Component id="buttonConfirmar" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jCancelar" min="-2" pref="133" max="-2" attributes="0"/>
+                  <Component id="buttonCancelar" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -317,8 +317,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonConfirmar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
@@ -326,7 +326,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jConfirmar">
+        <Component class="javax.swing.JButton" name="buttonConfirmar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -340,10 +340,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jConfirmarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConfirmarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jCancelar">
+        <Component class="javax.swing.JButton" name="buttonCancelar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -357,7 +357,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

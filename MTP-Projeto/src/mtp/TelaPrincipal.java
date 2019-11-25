@@ -15,11 +15,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jNome.setText("Olá, " + this.usuario.getNome());
         setLocationRelativeTo(null);
         if (this.usuario.getFoto() != null) {
-            TelaCadastro.setTempFotoIcon(this.usuario.getFoto(), jLabel1, 100, 100);
+            MyUtil.setarImagem(this.usuario.getFoto(), jLabel1, 100, 100);
         }
         buscarPosts();
     }
 
+    /* Método que busca e constrói os posts */
     private void buscarPosts() {
         Conexao conexao = new Conexao();
         conexao.conectar();
@@ -33,49 +34,49 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jAlterarCadastro = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonAlterarCadastro = new javax.swing.JButton();
+        buttonSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonCriarPost = new javax.swing.JButton();
         jNome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jAlterarCadastro.setBackground(new java.awt.Color(0, 0, 255));
-        jAlterarCadastro.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jAlterarCadastro.setForeground(new java.awt.Color(255, 255, 255));
-        jAlterarCadastro.setText("Alterar Cadastro");
-        jAlterarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jAlterarCadastro.addActionListener(new java.awt.event.ActionListener() {
+        buttonAlterarCadastro.setBackground(new java.awt.Color(0, 0, 255));
+        buttonAlterarCadastro.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buttonAlterarCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        buttonAlterarCadastro.setText("Alterar Cadastro");
+        buttonAlterarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonAlterarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAlterarCadastroActionPerformed(evt);
+                buttonAlterarCadastroActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Sair");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonSair.setBackground(new java.awt.Color(0, 0, 255));
+        buttonSair.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buttonSair.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSair.setText("Sair");
+        buttonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonSairActionPerformed(evt);
             }
         });
 
         jLabel1.setBackground(new java.awt.Color(153, 153, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon100.png"))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Criar Post");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonCriarPost.setBackground(new java.awt.Color(0, 0, 255));
+        buttonCriarPost.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buttonCriarPost.setForeground(new java.awt.Color(255, 255, 255));
+        buttonCriarPost.setText("Criar Post");
+        buttonCriarPost.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCriarPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonCriarPostActionPerformed(evt);
             }
         });
 
@@ -94,16 +95,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton1)
+                        .addComponent(buttonCriarPost)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jAlterarCadastro)
+                                .addComponent(buttonAlterarCadastro)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
-                                .addComponent(jButton2)
+                                .addComponent(buttonSair)
                                 .addGap(23, 23, 23))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jNome)
@@ -121,12 +122,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(jButton1))
+                        .addComponent(buttonCriarPost))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jAlterarCadastro))
+                            .addComponent(buttonSair)
+                            .addComponent(buttonAlterarCadastro))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -136,26 +137,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
         new TelaInicial().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonSairActionPerformed
 
-    private void jAlterarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlterarCadastroActionPerformed
+    private void buttonAlterarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarCadastroActionPerformed
         new TelaCadastro(this.usuario).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jAlterarCadastroActionPerformed
+    }//GEN-LAST:event_buttonAlterarCadastroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonCriarPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarPostActionPerformed
         new NovoPost(this.usuario).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonCriarPostActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jAlterarCadastro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton buttonAlterarCadastro;
+    private javax.swing.JButton buttonCriarPost;
+    private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jNome;
     private javax.swing.JPanel jPanel3;

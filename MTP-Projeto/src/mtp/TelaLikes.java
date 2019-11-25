@@ -1,6 +1,5 @@
 package mtp;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class TelaLikes extends javax.swing.JFrame {
@@ -12,6 +11,7 @@ public class TelaLikes extends javax.swing.JFrame {
         construirListaPessoas();
     }
 
+    /* Método que constrói a lista de pessoas que deram likes */
     private void construirListaPessoas() {
         Conexao conexao = new Conexao();
         conexao.conectar();

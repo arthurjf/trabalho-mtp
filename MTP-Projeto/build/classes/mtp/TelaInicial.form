@@ -84,9 +84,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="127" max="32767" attributes="0"/>
-                      <Component id="jEntrar" min="-2" pref="131" max="-2" attributes="0"/>
+                      <Component id="buttonEntrar" min="-2" pref="131" max="-2" attributes="0"/>
                       <EmptySpace pref="123" max="32767" attributes="0"/>
-                      <Component id="jCadastrar" min="-2" pref="131" max="-2" attributes="0"/>
+                      <Component id="buttonCadastrar" min="-2" pref="131" max="-2" attributes="0"/>
                       <EmptySpace pref="127" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -96,8 +96,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jEntrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonEntrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
@@ -105,7 +105,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jCadastrar">
+            <Component class="javax.swing.JButton" name="buttonCadastrar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -119,10 +119,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCadastrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCadastrarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jEntrar">
+            <Component class="javax.swing.JButton" name="buttonEntrar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -136,7 +136,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jEntrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEntrarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

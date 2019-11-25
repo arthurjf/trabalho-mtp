@@ -24,8 +24,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jCadastrar = new javax.swing.JButton();
-        jEntrar = new javax.swing.JButton();
+        buttonCadastrar = new javax.swing.JButton();
+        buttonEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Início");
@@ -37,23 +37,23 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setToolTipText("Tela Inicial");
 
-        jCadastrar.setBackground(new java.awt.Color(162, 245, 135));
-        jCadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCadastrar.setText("Cadastrar");
-        jCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        buttonCadastrar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonCadastrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonCadastrar.setText("Cadastrar");
+        buttonCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCadastrarActionPerformed(evt);
+                buttonCadastrarActionPerformed(evt);
             }
         });
 
-        jEntrar.setBackground(new java.awt.Color(162, 245, 135));
-        jEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jEntrar.setText("Entrar");
-        jEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jEntrar.addActionListener(new java.awt.event.ActionListener() {
+        buttonEntrar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonEntrar.setText("Entrar");
+        buttonEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jEntrarActionPerformed(evt);
+                buttonEntrarActionPerformed(evt);
             }
         });
 
@@ -63,9 +63,9 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(127, Short.MAX_VALUE)
-                .addComponent(jEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                .addComponent(jCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -73,8 +73,8 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jEntrar)
-                    .addComponent(jCadastrar))
+                    .addComponent(buttonEntrar)
+                    .addComponent(buttonCadastrar))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -111,15 +111,15 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCadastrarActionPerformed
+    private void buttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarActionPerformed
         new TelaCadastro(null).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jCadastrarActionPerformed
+    }//GEN-LAST:event_buttonCadastrarActionPerformed
 
-    private void jEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEntrarActionPerformed
+    private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
         new TelaLogin().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jEntrarActionPerformed
+    }//GEN-LAST:event_buttonEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,8 +157,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jCadastrar;
-    private javax.swing.JButton jEntrar;
+    private javax.swing.JButton buttonCadastrar;
+    private javax.swing.JButton buttonEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

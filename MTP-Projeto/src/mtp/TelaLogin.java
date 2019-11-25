@@ -21,13 +21,13 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jNome = new javax.swing.JTextField();
+        campoNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSenha = new javax.swing.JPasswordField();
+        campoSenha = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
-        bEntrar = new javax.swing.JButton();
-        bCancelar = new javax.swing.JButton();
+        buttonEntrar = new javax.swing.JButton();
+        buttonCancelaar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -35,9 +35,9 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
 
         jPanel1.setBackground(new java.awt.Color(162, 245, 135));
 
-        jNome.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jNome.setToolTipText("");
-        jNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
+        campoNome.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoNome.setToolTipText("");
+        campoNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -46,31 +46,31 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Senha");
 
-        jSenha.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jSenha.setForeground(new java.awt.Color(64, 64, 64));
-        jSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
+        campoSenha.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        campoSenha.setForeground(new java.awt.Color(64, 64, 64));
+        campoSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(124, 190, 103), 2, true));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        bEntrar.setBackground(new java.awt.Color(162, 245, 135));
-        bEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        bEntrar.setText("Entrar");
-        bEntrar.setBorder(new javax.swing.border.MatteBorder(null));
-        bEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bEntrar.addActionListener(new java.awt.event.ActionListener() {
+        buttonEntrar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonEntrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonEntrar.setText("Entrar");
+        buttonEntrar.setBorder(new javax.swing.border.MatteBorder(null));
+        buttonEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEntrarActionPerformed(evt);
+                buttonEntrarActionPerformed(evt);
             }
         });
 
-        bCancelar.setBackground(new java.awt.Color(162, 245, 135));
-        bCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        bCancelar.setText("Cancelar");
-        bCancelar.setBorder(new javax.swing.border.MatteBorder(null));
-        bCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelaar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonCancelaar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonCancelaar.setText("Cancelar");
+        buttonCancelaar.setBorder(new javax.swing.border.MatteBorder(null));
+        buttonCancelaar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCancelaar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelarActionPerformed(evt);
+                buttonCancelaarActionPerformed(evt);
             }
         });
 
@@ -80,9 +80,9 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCancelaar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -90,8 +90,8 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCancelaar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -105,8 +105,8 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,11 +115,11 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -138,36 +138,36 @@ public class TelaLogin extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
+    private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
         Conexao novaConexao = new Conexao();
         novaConexao.conectar();
-        Usuario novoUsuario = novaConexao.login(jNome.getText(), new String(jSenha.getPassword()));
+        Usuario novoUsuario = novaConexao.login(campoNome.getText(), new String(campoSenha.getPassword()));
         if (novoUsuario != null) {
             new TelaPrincipal(novoUsuario).setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_bEntrarActionPerformed
+    }//GEN-LAST:event_buttonEntrarActionPerformed
 
-    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+    private void buttonCancelaarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaarActionPerformed
         new TelaInicial().setVisible(true);
         dispose();
-    }//GEN-LAST:event_bCancelarActionPerformed
+    }//GEN-LAST:event_buttonCancelaarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bCancelar;
-    private javax.swing.JButton bEntrar;
+    private javax.swing.JButton buttonCancelaar;
+    private javax.swing.JButton buttonEntrar;
+    private javax.swing.JTextField campoNome;
+    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jSenha;
     // End of variables declaration//GEN-END:variables
 
     @Override

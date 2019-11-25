@@ -35,6 +35,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         checarImagem();
     }
 
+    /* Método que organiza a tela de alterar cadastro */
     private void definirAtualizarPagina() {
         campoNome.setText(this.usuario.getNome());
         campoEmail.setText(this.usuario.getEmail());
@@ -43,20 +44,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         campoConfirmarSenha.setText(this.usuario.getSenha());
         campoEmail.setEditable(false);
         campoEmail.setEnabled(false);
-        jConfirmar.setText("Alterar");
+        buttonConfirmar.setText("Alterar");
         imagem = this.usuario.getFoto();
         setTitle("Alterar cadastro");
         if (this.usuario.getFoto() != null) {
-            setTempFotoIcon(this.usuario.getFoto(), labelFoto, 139, 139);
+            MyUtil.setarImagem(this.usuario.getFoto(), labelFoto, 139, 139);
         }
-    }
-
-    public static void setTempFotoIcon(byte[] foto, JLabel labelDaFoto, int Largura, int Altura) {
-        ImageIcon icon = new ImageIcon(foto);
-        Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(Largura, Altura, Image.SCALE_SMOOTH);
-        ImageIcon newIcon = new ImageIcon(newimg);
-        labelDaFoto.setIcon(newIcon);
     }
 
     /**
@@ -80,12 +73,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         campoSenha = new javax.swing.JPasswordField();
         campoConfirmarSenha = new javax.swing.JPasswordField();
         labelFoto = new javax.swing.JLabel();
-        botaoAlterarFoto = new javax.swing.JLabel();
+        buttonAlterarFoto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         buttonRemoverFoto = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
-        jConfirmar = new javax.swing.JButton();
-        jCancelar = new javax.swing.JButton();
+        buttonConfirmar = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -131,11 +124,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         labelFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/user_icon.png"))); // NOI18N
 
-        botaoAlterarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/edit_icon.png"))); // NOI18N
-        botaoAlterarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botaoAlterarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonAlterarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/edit_icon.png"))); // NOI18N
+        buttonAlterarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonAlterarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoAlterarFotoMouseClicked(evt);
+                buttonAlterarFotoMouseClicked(evt);
             }
         });
 
@@ -179,7 +172,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAlterarFoto)
+                .addComponent(buttonAlterarFoto)
                 .addGap(247, 247, 247))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,7 +183,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoAlterarFoto, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(buttonAlterarFoto, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonRemoverFoto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,23 +211,23 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jConfirmar.setBackground(new java.awt.Color(162, 245, 135));
-        jConfirmar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jConfirmar.setText("Registrar");
-        jConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jConfirmar.addActionListener(new java.awt.event.ActionListener() {
+        buttonConfirmar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonConfirmar.setText("Registrar");
+        buttonConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jConfirmarActionPerformed(evt);
+                buttonConfirmarActionPerformed(evt);
             }
         });
 
-        jCancelar.setBackground(new java.awt.Color(162, 245, 135));
-        jCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCancelar.setText("Cancelar");
-        jCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCancelar.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelar.setBackground(new java.awt.Color(162, 245, 135));
+        buttonCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonCancelar.setText("Cancelar");
+        buttonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCancelarActionPerformed(evt);
+                buttonCancelarActionPerformed(evt);
             }
         });
 
@@ -244,9 +237,9 @@ public class TelaCadastro extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -254,8 +247,8 @@ public class TelaCadastro extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jConfirmar)
-                    .addComponent(jCancelar))
+                    .addComponent(buttonConfirmar)
+                    .addComponent(buttonCancelar))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -277,7 +270,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmarActionPerformed
+    private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         if (!campoNome.getText().trim().isEmpty() && !campoEmail.getText().trim().isEmpty() && !campoCidadeEstado.getText().trim().isEmpty() && !new String(campoSenha.getPassword()).trim().isEmpty()) {
             if (new String(campoSenha.getPassword()).equals(new String(campoConfirmarSenha.getPassword()))) {
                 Conexao cn = new Conexao();
@@ -303,20 +296,20 @@ public class TelaCadastro extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jConfirmarActionPerformed
+    }//GEN-LAST:event_buttonConfirmarActionPerformed
 
-    private void jCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelarActionPerformed
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         if (this.usuario == null) {
             new TelaInicial().setVisible(true);
         } else {
             new TelaPrincipal(this.usuario).setVisible(true);
         }
         dispose();
-    }//GEN-LAST:event_jCancelarActionPerformed
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     byte[] imagem = null;
 
-    private void botaoAlterarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoAlterarFotoMouseClicked
+    private void buttonAlterarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAlterarFotoMouseClicked
         JFileChooser fc = new JFileChooser();
         int retorno = fc.showOpenDialog(this);
         File novoArquivo = fc.getSelectedFile();
@@ -325,7 +318,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 MyUtil.filtrarArquivoParaImagem(novoArquivo);
                 try {
                     imagem = Files.readAllBytes(novoArquivo.toPath());
-                    setTempFotoIcon(imagem, labelFoto, 139, 139);
+                    MyUtil.setarImagem(imagem, labelFoto, 139, 139);
                     checarImagem();
                 } catch (IOException e) {
                 }
@@ -333,8 +326,9 @@ public class TelaCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Imagem não encontrada ou formato incompatível", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_botaoAlterarFotoMouseClicked
+    }//GEN-LAST:event_buttonAlterarFotoMouseClicked
 
+    /* Método que checa se a imagem foi selecionada */
     private void checarImagem() {
         if (imagem != null) {
             buttonRemoverFoto.setEnabled(true);
@@ -356,17 +350,17 @@ public class TelaCadastro extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel botaoAlterarFoto;
+    private javax.swing.JLabel buttonAlterarFoto;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonConfirmar;
     private javax.swing.JToggleButton buttonRemoverFoto;
     private javax.swing.JTextField campoCidadeEstado;
     private javax.swing.JPasswordField campoConfirmarSenha;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoNome;
     private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JButton jCancelar;
     private javax.swing.JLabel jCidade1;
     private javax.swing.JLabel jConSenha1;
-    private javax.swing.JButton jConfirmar;
     private javax.swing.JLabel jEmail1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jNome1;

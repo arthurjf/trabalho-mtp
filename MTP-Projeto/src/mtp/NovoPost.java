@@ -23,8 +23,8 @@ public class NovoPost extends javax.swing.JFrame {
         MyUtil.setarCorDaJanela(this, new Color(240, 240, 240));
         setLocationRelativeTo(null);
         this.usuario = novoUsuario;
-        checarSeArquivoExiste();
-        checarTexto();
+        checarArquivoSelecionado();
+        checarTextoTamanho();
     }
 
     /**
@@ -38,14 +38,14 @@ public class NovoPost extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jCampoTexto = new javax.swing.JTextArea();
-        jPostarFoto = new javax.swing.JLabel();
+        campoTexto = new javax.swing.JTextArea();
+        buttonSelecionarImagem = new javax.swing.JLabel();
         labelTextoTamanho = new javax.swing.JLabel();
         buttonRemoverImagem = new javax.swing.JButton();
         labelTextoImagem = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
+        buttonPostar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Novo Post");
@@ -53,21 +53,21 @@ public class NovoPost extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel1.setText("Texto:");
 
-        jCampoTexto.setColumns(20);
-        jCampoTexto.setLineWrap(true);
-        jCampoTexto.setRows(5);
-        jCampoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoTexto.setColumns(20);
+        campoTexto.setLineWrap(true);
+        campoTexto.setRows(5);
+        campoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jCampoTextoKeyTyped(evt);
+                campoTextoKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(jCampoTexto);
+        jScrollPane1.setViewportView(campoTexto);
 
-        jPostarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/14611 (1).png"))); // NOI18N
-        jPostarFoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPostarFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonSelecionarImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mtp/imagens/14611 (1).png"))); // NOI18N
+        buttonSelecionarImagem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSelecionarImagem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPostarFotoMouseClicked(evt);
+                buttonSelecionarImagemMouseClicked(evt);
             }
         });
 
@@ -88,21 +88,21 @@ public class NovoPost extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buttonCancelar.setText("Cancelar");
+        buttonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonCancelarActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setText("Postar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonPostar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buttonPostar.setText("Postar");
+        buttonPostar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonPostar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonPostarActionPerformed(evt);
             }
         });
 
@@ -112,9 +112,9 @@ public class NovoPost extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(132, 132, 132)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonPostar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,8 +122,8 @@ public class NovoPost extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(buttonCancelar)
+                    .addComponent(buttonPostar))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -136,13 +136,10 @@ public class NovoPost extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonRemoverImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPostarFoto)
+                                .addComponent(buttonSelecionarImagem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelTextoImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(37, 37, 37)
@@ -150,7 +147,9 @@ public class NovoPost extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonRemoverImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -163,7 +162,7 @@ public class NovoPost extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPostarFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSelecionarImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelTextoImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(labelTextoTamanho))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -175,15 +174,15 @@ public class NovoPost extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         dispose();
         new TelaPrincipal(this.usuario).setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     File arquivo = null;
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jCampoTexto.getText().isEmpty()) {
+    private void buttonPostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPostarActionPerformed
+        if (campoTexto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "O campo de texto não pode estar vazio!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (textoMuitoGrande()) {
@@ -191,7 +190,7 @@ public class NovoPost extends javax.swing.JFrame {
             } else {
                 Conexao conexao = new Conexao();
                 try {
-                    conexao.cadastrarPost(jCampoTexto.getText(), this.usuario.getId(), arquivo);
+                    conexao.cadastrarPost(campoTexto.getText(), this.usuario.getId(), arquivo);
                     JOptionPane.showMessageDialog(null, "Seu post foi publicado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     new TelaPrincipal(this.usuario).setVisible(true);
@@ -200,9 +199,9 @@ public class NovoPost extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonPostarActionPerformed
 
-    private void jPostarFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPostarFotoMouseClicked
+    private void buttonSelecionarImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSelecionarImagemMouseClicked
         JFileChooser fc = new JFileChooser();
         int retorno = fc.showOpenDialog(this);
         File novoArquivo = fc.getSelectedFile();
@@ -214,10 +213,11 @@ public class NovoPost extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Imagem não encontrada ou formato incompatível", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        checarSeArquivoExiste();
-    }//GEN-LAST:event_jPostarFotoMouseClicked
+        checarArquivoSelecionado();
+    }//GEN-LAST:event_buttonSelecionarImagemMouseClicked
 
-    private void checarSeArquivoExiste() {
+    /* Método que verifica se o arquivo de imagem foi selecionado */
+    private void checarArquivoSelecionado() {
         if (arquivo != null) {
             buttonRemoverImagem.setVisible(true);
             buttonRemoverImagem.enable(true);
@@ -229,17 +229,19 @@ public class NovoPost extends javax.swing.JFrame {
         }
     }
 
+    /* Método que retorna se um texto é muito grande ou não */
     private boolean textoMuitoGrande() {
-        return (jCampoTexto.getText().length() > 140) ? true : false;
+        return (campoTexto.getText().length() > 140) ? true : false;
     }
 
     private void buttonRemoverImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverImagemActionPerformed
         arquivo = null;
-        checarSeArquivoExiste();
+        checarArquivoSelecionado();
     }//GEN-LAST:event_buttonRemoverImagemActionPerformed
 
-    private void checarTexto() {
-        labelTextoTamanho.setText(Integer.toString(jCampoTexto.getText().length()) + "/140");
+    /* Método que checa e atualiza o texto do tamanho do texto */
+    private void checarTextoTamanho() {
+        labelTextoTamanho.setText(Integer.toString(campoTexto.getText().length()) + "/140");
         if (textoMuitoGrande()) {
             labelTextoTamanho.setForeground(Color.RED);
         } else {
@@ -247,18 +249,19 @@ public class NovoPost extends javax.swing.JFrame {
         }
     }
 
-    private void jCampoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCampoTextoKeyTyped
-        checarTexto();
-    }//GEN-LAST:event_jCampoTextoKeyTyped
+    /* Método que é chamado quando uma tecla é pressionada para checar o tamanho do texto */
+    private void campoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoKeyTyped
+        checarTextoTamanho();
+    }//GEN-LAST:event_campoTextoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonPostar;
     private javax.swing.JButton buttonRemoverImagem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JTextArea jCampoTexto;
+    private javax.swing.JLabel buttonSelecionarImagem;
+    private javax.swing.JTextArea campoTexto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel jPostarFoto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelTextoImagem;
     private javax.swing.JLabel labelTextoTamanho;

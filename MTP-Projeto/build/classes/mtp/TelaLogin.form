@@ -53,8 +53,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jNome" min="-2" pref="382" max="-2" attributes="0"/>
-                      <Component id="jSenha" alignment="0" min="-2" pref="382" max="-2" attributes="0"/>
+                      <Component id="campoNome" min="-2" pref="382" max="-2" attributes="0"/>
+                      <Component id="campoSenha" alignment="0" min="-2" pref="382" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="92" max="32767" attributes="0"/>
               </Group>
@@ -66,11 +66,11 @@
                   <EmptySpace pref="38" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jNome" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="campoNome" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSenha" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="campoSenha" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -78,7 +78,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jNome">
+        <Component class="javax.swing.JTextField" name="campoNome">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
@@ -112,7 +112,7 @@
             <Property name="text" type="java.lang.String" value="Senha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jSenha">
+        <Component class="javax.swing.JPasswordField" name="campoSenha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
@@ -141,9 +141,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="bEntrar" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="buttonEntrar" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="bCancelar" min="-2" pref="125" max="-2" attributes="0"/>
+                      <Component id="buttonCancelaar" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -153,8 +153,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bEntrar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="bCancelar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="buttonEntrar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="buttonCancelaar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="31" max="32767" attributes="0"/>
                   </Group>
@@ -162,7 +162,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="bEntrar">
+            <Component class="javax.swing.JButton" name="buttonEntrar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -181,10 +181,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEntrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEntrarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="bCancelar">
+            <Component class="javax.swing.JButton" name="buttonCancelaar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="87" green="f5" red="a2" type="rgb"/>
@@ -203,7 +203,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelaarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
