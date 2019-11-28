@@ -43,6 +43,8 @@ public class PanelPost extends javax.swing.JPanel {
         labelTexto = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setMaximumSize(new java.awt.Dimension(643, 32767));
+
         labelNome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelNome.setText("jLabel1");
 
@@ -81,7 +83,10 @@ public class PanelPost extends javax.swing.JPanel {
         labelTexto.setRows(5);
         labelTexto.setToolTipText("");
         labelTexto.setMaximumSize(new java.awt.Dimension(164, 94));
+        labelTexto.setPreferredSize(null);
         jScrollPane1.setViewportView(labelTexto);
+
+        jSeparator1.setForeground(new java.awt.Color(121, 121, 121));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

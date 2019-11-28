@@ -29,6 +29,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Início");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(159, 250, 134));
 
